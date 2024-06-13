@@ -108,4 +108,31 @@
     font-weight: lighter;
     text-align: justify;
   }
+  .services {
+    margin: 70px 162px;
+    text-align: center;
+  }
+  .services__title {
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 50px;
+  }
+  .services__list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .services__item {
+    background-color: #FAE5C4;
+    display: flow;
+    margin: 10px;
+    align-content: center;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+  }
+  .services__item > .services__text {
+    font-size: 20px;
+    font-weight: lighter;
+  }
 }/*# sourceMappingURL=style.css.map */

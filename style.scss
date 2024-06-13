@@ -137,4 +137,38 @@
             }
         }
     }
+
+    .services {
+        margin: 70px 162px;
+        text-align: center;
+    
+        &__title {
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 50px;
+        }
+    
+        &__list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+    
+        &__item {
+            background-color: #FAE5C4;
+            display: flow;
+            margin: 10px;
+            align-content: center;
+            width: 180px;
+            height: 180px;
+            text-align: center;
+            
+    
+            & > .services__text {
+                font-size: 20px;
+                font-weight: lighter;
+            }
+        }
+    }
+    
 }
