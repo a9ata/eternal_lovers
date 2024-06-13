@@ -1,13 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="en,ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="../public/logo_E&L_title.svg" width="auto"/>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Eternal Lovers</title>
   </head>
   <body>
+    <header class="header">
+      <div class="header__logo">
+        <img src="../public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px">
+      </div>
+      <nav class="header__nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">О нас</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">Консультация</a></li>
+          <li class="nav__item"><a href="#" class="nav__link">Услуги</a></li>
+          <li class="nav__item"><a href="blog.html" class="nav__link">Блог</a></li>
+          <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
+          <li class="nav__item"><a href="reviews.html" class="nav__link">Отзывы</a></li>
+        </ul>
+      </nav>
+      <div class="header__icons">
+        <a href="contact.html" class="header__icon"><img src="../public/icon/hugeicons_contact.svg" alt="Contact"></a>
+        <a href="favorite.html" class="header__icon"><img src="../public/icon/ph_heart-thin.svg" alt="Favorite"></a>
+        <a href="basket.html" class="header__icon"><img src="../public/icon/ph_basket-thin.svg" alt="Basket"></a>
+        <a href="#" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+      </div>
+    </header>
     <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="../main.js"></script>
   </body>
 </html>

@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background-color: #D59CF8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 0 100px;
+
+
+    .header__logo{
+        margin: auto 0;
+    }
+
+    .header__nav{
+        display: flex;
+        justify-content: space-between;
+
+
+
+        .nav__list{
+            display: flex;
+            justify-content: space-between;
+            
+            list-style-type: none;
+
+            .nav__item{
+                margin-right: 59px;
+
+                .nav__link{
+                    font-family: 'Jost';
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+            .nav__item:nth-child(7){
+                margin-right: 0;
+            }
+        }
+    }
+
+    .header__icons{
+
+
+        .header__icon{
+            margin-right: 60px;
+        }
+        .header__icon:nth-child(4){
+            margin-right: 0;
+        }
+    }
+}
