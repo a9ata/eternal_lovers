@@ -76,4 +76,22 @@
             }
         }
     }
+
+    .welcome{
+        margin: 70px 162px;
+        text-align: center;
+        justify-content: center;
+        display: grid;
+        &__title {
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 50px;
+        }
+    
+        &__text {
+            width: 1270px;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+    }
 }

@@ -56,4 +56,20 @@
     font-size: 45px;
     font-weight: lighter;
   }
+  .welcome {
+    margin: 70px 162px;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+  }
+  .welcome__title {
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 50px;
+  }
+  .welcome__text {
+    width: 1270px;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
 }/*# sourceMappingURL=style.css.map */
