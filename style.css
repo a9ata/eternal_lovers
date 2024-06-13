@@ -1,41 +1,59 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Jost";
 }
 
-.header {
-  background-color: #D59CF8;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 100px;
-}
-.header .header__logo {
-  margin: auto 0;
-}
-.header .header__nav {
-  display: flex;
-  justify-content: space-between;
-}
-.header .header__nav .nav__list {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-}
-.header .header__nav .nav__list .nav__item {
-  margin-right: 59px;
-}
-.header .header__nav .nav__list .nav__item .nav__link {
-  font-family: "Jost";
-  text-decoration: none;
-  color: #000;
-}
-.header .header__nav .nav__list .nav__item:nth-child(7) {
-  margin-right: 0;
-}
-.header .header__icons .header__icon {
-  margin-right: 60px;
-}
-.header .header__icons .header__icon:nth-child(4) {
-  margin-right: 0;
+@media (max-width: 1920px) {
+  .header {
+    background-color: #D59CF8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 163px 3px 285px;
+  }
+  .header .header__logo {
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+  }
+  .header .header__nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .header .header__nav .nav__list {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  .header .header__nav .nav__list .nav__item {
+    margin-right: 59px;
+  }
+  .header .header__nav .nav__list .nav__item .nav__link {
+    text-decoration: none;
+    color: #000;
+  }
+  .header .header__nav .nav__list .nav__item:nth-child(7) {
+    margin-right: 0;
+  }
+  .header .header__icons .header__icon {
+    margin-right: 60px;
+  }
+  .header .header__icons .header__icon:nth-child(4) {
+    margin-right: 0;
+  }
+  .banner .banner__content {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 590px;
+    background-image: url("../public/background/bgr-main_bride.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-left: 285px;
+  }
+  .banner .banner__content .banner__title {
+    font-size: 45px;
+    font-weight: lighter;
+  }
 }/*# sourceMappingURL=style.css.map */
