@@ -162,7 +162,7 @@
     margin-bottom: 0;
   }
   .process__step {
-    width: 318px;
+    width: 320px;
     text-align: center;
   }
   .process__step-title {
@@ -175,5 +175,65 @@
     font-size: 20px;
     color: #fff;
     text-align: justify;
+  }
+  .consultation {
+    margin: 70px 162px;
+    text-align: center;
+    justify-content: center;
+    display: grid;
+  }
+  .consultation__title {
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 50px;
+  }
+  .consultation__subtitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .consultation__form {
+    width: 390.16px;
+    background-color: #A9DF81;
+    padding: 35px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 58px;
+  }
+  .consultation__input, .consultation__textarea {
+    width: 325px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    background-color: transparent;
+  }
+  .consultation__input::-moz-placeholder, .consultation__textarea::-moz-placeholder {
+    color: black;
+    font-size: 14px;
+    margin: 0;
+  }
+  .consultation__input::placeholder, .consultation__textarea::placeholder {
+    color: black;
+    font-size: 14px;
+    margin: 0;
+  }
+  .consultation__textarea {
+    resize: vertical;
+  }
+  .consultation__button {
+    background-color: #9F6BA0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 18px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+  .consultation__button:hover {
+    background-color: #fff;
+    color: #9F6BA0;
   }
 }/*# sourceMappingURL=style.css.map */
