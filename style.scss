@@ -170,5 +170,54 @@
             }
         }
     }
+
+    .process {
+        margin: 70px 162px;
+        width: 1596px;
+        height: 749.55px;
+        background-image: url('../public/background/bgr-main_s-process.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+        padding-top: 30px;
+    
+        &__title {
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+    
+        &__steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            margin-left: 163px;
+            margin-right: 163px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    
+        &__step {
+            width: 318px;
+            text-align: center;
+        }
+    
+        &__step-title {
+            font-size: 24px;
+            font-weight: lighter;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+    
+        &__step-text {
+            font-size: 20px;
+            color: #fff;
+            text-align: justify;
+        }
+    }
+    
     
 }
