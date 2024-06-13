@@ -284,4 +284,105 @@
         }
     }
     
+
+    .footer {
+        background-color: #FAE5C4;
+        padding: 40px 163px 40px 212px;
+        color: black;
+    
+        &__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+    
+        &__logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+    
+            img {
+                width: 195.13px;
+                height: 203.64px;
+            }
+        }
+    
+        &__nav {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 31px;
+            &-list {
+                list-style: none;
+                padding: 0;
+                margin: 0 20px;
+    
+                &:first-child {
+                    margin-right: 112px;
+                }
+            }
+    
+            &-item {
+                margin-bottom: 30px;
+            }
+    
+            &-link {
+                text-decoration: none;
+                color: black;
+                font-size: 22px;
+                transition: color 0.3s;
+    
+                &:hover {
+                    color: #9F6BA0;
+                }
+            }
+        }
+
+        &__socials {
+            display: flex;
+            flex-direction: column;
+            margin-top: 31px;
+            &-link {
+                margin-bottom: 20px;
+            }
+        }
+    
+        &__contacts {
+            text-align: left;
+            margin-top: 31px;
+            &-phone,
+            &-hours,
+            &-address,
+            &-metro,
+            &-email {
+                margin-bottom: 10px;
+                font-size: 22px;
+            }
+            &-metro{
+                font-size: 18px;
+            }
+            &-email a {
+                color: black;
+                text-decoration: none;
+                transition: color 0.3s;
+    
+                &:hover {
+                    color: #9F6BA0;
+                }
+            }
+        }
+    
+        &__copyright {
+            text-align: left;
+            width: 100%;
+            margin-top: 20px;
+    
+            &-text {
+                font-size: 14px;
+            }
+        }
+    }
+    
 }
