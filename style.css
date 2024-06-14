@@ -318,4 +318,103 @@
   .footer__copyright-text {
     font-size: 14px;
   }
+  .blog {
+    margin: 70px 324px;
+  }
+  .blog__title {
+    font-size: 40px;
+    font-weight: lighter;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .blog__content {
+    margin: 0 auto;
+  }
+  .blog__subtitle {
+    font-size: 35px;
+    font-weight: lighter;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .blog__text {
+    font-size: 24px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .blog__text--wide {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  .blog__subsection-title {
+    font-size: 35px;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+  .blog__subsection-text {
+    font-size: 28px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  .blog__ideas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .blog__ideas-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .blog__ideas-item:last-child {
+    margin-bottom: 0;
+  }
+  .blog__ideas-number-first {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin-right: 59px;
+    background-color: #9F6BA0;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    line-height: 30px;
+    justify-content: center;
+  }
+  .blog__ideas-number {
+    display: flex;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin-right: 59px;
+    background-color: #A9DF81;
+    color: black;
+    font-size: 40px;
+    text-align: center;
+    line-height: 30px;
+    justify-content: center;
+  }
+  .blog__ideas-text {
+    width: 1138px;
+    font-size: 24px;
+    text-align: justify;
+  }
+  .blog__images {
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 160px;
+  }
+  .blog__wishlist, .blog__checklist {
+    font-size: 24px;
+    margin-bottom: 20px;
+    list-style: disc;
+    padding-left: 40px;
+  }
+  .blog__wishlist-item, .blog__checklist-item {
+    margin-bottom: 10px;
+  }
 }/*# sourceMappingURL=style.css.map */
