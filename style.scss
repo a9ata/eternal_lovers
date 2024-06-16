@@ -983,10 +983,10 @@
     }
     
     .blog {
-        margin: 70px 324px;
+        margin: 40px 100px;
     
         &__title {
-            font-size: 40px;
+            font-size: 24px;
             font-weight: lighter;
             text-align: center;
             margin-bottom: 20px;
@@ -997,34 +997,34 @@
         }
     
         &__subtitle {
-            font-size: 35px;
+            font-size: 18px;
             font-weight: lighter;
             text-align: center;
             margin-bottom: 20px;
         }
     
         &__text {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: lighter;
             margin-bottom: 20px;
             text-align: center;  
 
             &--wide {
-                font-size: 24px;
+                font-size: 16px;
                 margin-bottom: 20px;
                 text-align: justify;
             }
         }
         
         &__subsection-title {
-            font-size: 35px;
+            font-size: 18px;
             font-weight: lighter;
             margin-bottom: 10px;
             margin-top: 30px;
         }
     
         &__subsection-text{
-            font-size: 28px;
+            font-size: 16px;
             font-weight: lighter;
             margin-bottom: 20px;
             text-align: justify;
@@ -1050,12 +1050,12 @@
         &__ideas-number-first {
             display: flex;
             align-items: center;
-            width: 70px;
-            height: 70px;
-            margin-right: 59px;
+            width: 40px;
+            height: 40px;
+            margin-right: 30px;
             background-color: #9F6BA0;
             color: black;
-            font-size: 40px;
+            font-size: 18px;
             text-align: center;
             line-height: 30px;
             justify-content: center;
@@ -1064,12 +1064,12 @@
         &__ideas-number {
             display: flex;
             align-items: center;
-            width: 70px;
-            height: 70px;
-            margin-right: 59px;
+            width: 40px;
+            height: 40px;
+            margin-right: 30px;
             background-color: #A9DF81;
             color: black;
-            font-size: 40px;
+            font-size: 18px;
             text-align: center;
             line-height: 30px;
             justify-content: center;
@@ -1077,21 +1077,29 @@
         }
         
         &__ideas-text {
-            width: 1138px;
-            font-size: 24px;
+            width: 600px;
+            font-size: 14px;
             text-align: justify;
         }
     
         &__images {
             display: flex;
             justify-content: space-between;
-            margin: 80px 160px;
+            margin: 40px 100px;
             
+            & img{
+                width: 290px;
+                height: 434.21px;
+            }
+        }
+
+        &__image{
+            width: 825px;
         }
 
         &__wishlist,
         &__checklist {
-            font-size: 24px;
+            font-size: 16px;
             margin-bottom: 20px;
             list-style: disc;
             padding-left: 40px;
@@ -1465,7 +1473,7 @@
 
     .footer {
         background-color: #FAE5C4;
-        padding: 30px 20px;
+        padding: 20px 20px;
         color: black;
     
         &__container {
@@ -1581,10 +1589,10 @@
     }
     
     .blog {
-        margin: 70px 324px;
+        margin: 20px 30px;
     
         &__title {
-            font-size: 40px;
+            font-size: 26px;
             font-weight: lighter;
             text-align: center;
             margin-bottom: 20px;
@@ -1595,34 +1603,34 @@
         }
     
         &__subtitle {
-            font-size: 35px;
+            font-size: 18px;
             font-weight: lighter;
             text-align: center;
             margin-bottom: 20px;
         }
     
         &__text {
-            font-size: 24px;
+            font-size: 14px;
             font-weight: lighter;
             margin-bottom: 20px;
             text-align: center;  
 
             &--wide {
-                font-size: 24px;
+                font-size: 14px;
                 margin-bottom: 20px;
                 text-align: justify;
             }
         }
         
         &__subsection-title {
-            font-size: 35px;
+            font-size: 26px;
             font-weight: lighter;
             margin-bottom: 10px;
             margin-top: 30px;
         }
     
         &__subsection-text{
-            font-size: 28px;
+            font-size: 16px;
             font-weight: lighter;
             margin-bottom: 20px;
             text-align: justify;
@@ -1648,12 +1656,12 @@
         &__ideas-number-first {
             display: flex;
             align-items: center;
-            width: 70px;
-            height: 70px;
-            margin-right: 59px;
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
             background-color: #9F6BA0;
             color: black;
-            font-size: 40px;
+            font-size: 12px;
             text-align: center;
             line-height: 30px;
             justify-content: center;
@@ -1662,12 +1670,12 @@
         &__ideas-number {
             display: flex;
             align-items: center;
-            width: 70px;
-            height: 70px;
-            margin-right: 59px;
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
             background-color: #A9DF81;
             color: black;
-            font-size: 40px;
+            font-size:12px;
             text-align: center;
             line-height: 30px;
             justify-content: center;
@@ -1675,21 +1683,25 @@
         }
         
         &__ideas-text {
-            width: 1138px;
-            font-size: 24px;
+            width: 500px;
+            font-size: 12px;
             text-align: justify;
         }
     
         &__images {
             display: flex;
             justify-content: space-between;
-            margin: 80px 160px;
+            margin: 10px 160px;
+            & img{
+                width: 180px;
+                height: 330px;
+            }
             
         }
 
         &__wishlist,
         &__checklist {
-            font-size: 24px;
+            font-size: 16px;
             margin-bottom: 20px;
             list-style: disc;
             padding-left: 40px;
@@ -1704,7 +1716,7 @@
         margin: 20px 30px;
     
         &__title {
-            font-size: 40px;
+            font-size: 26px;
             text-align: center;
             margin-bottom: 70px;
             font-weight: lighter;
@@ -1714,7 +1726,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            max-width: 1200px;
+            max-width: 600px;
             margin: 0 auto;
         }
     
