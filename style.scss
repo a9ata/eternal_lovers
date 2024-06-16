@@ -1695,13 +1695,17 @@
             & img{
                 width: 180px;
                 height: 330px;
+                
             }
-            
+        }
+
+        &__image{
+            width: 710px;
         }
 
         &__wishlist,
         &__checklist {
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 20px;
             list-style: disc;
             padding-left: 40px;
