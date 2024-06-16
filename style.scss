@@ -1103,10 +1103,10 @@
     }
 
     .contacts {
-        margin: 70px 400px;
+        margin: 40px 100px;
     
         &__title {
-            font-size: 40px;
+            font-size: 35px;
             text-align: center;
             margin-bottom: 70px;
             font-weight: lighter;
@@ -1125,24 +1125,24 @@
         }
     
         &__phone {
-            font-size: 22px;
+            font-size: 18px;
         }
     
         &__hours {
-            font-size: 18px;
+            font-size: 14px;
             margin-bottom: 20px;
         }
     
         &__address {
-            font-size: 22px;
+            font-size: 18px;
         }
         &__metro {
-            font-size: 18px;
+            font-size: 14px;
             margin-bottom: 20px;
         }
     
         &__email {
-            font-size: 22px;
+            font-size: 18px;
             margin-bottom: 20px;
             display: flex;
                 align-items: center;
@@ -1154,8 +1154,13 @@
         }
     
         &__map {
-            width: 570px;
-            height: 570px;
+            width: 400px !important;
+            height: 400px !important;
+
+            & iframe{
+                width: 400px;
+                height: 400px;
+            }
         }
     }
     
@@ -1696,7 +1701,7 @@
     }
 
     .contacts {
-        margin: 70px 400px;
+        margin: 20px 30px;
     
         &__title {
             font-size: 40px;
@@ -1718,24 +1723,24 @@
         }
     
         &__phone {
-            font-size: 22px;
+            font-size: 14px;
         }
     
         &__hours {
-            font-size: 18px;
+            font-size: 12px;
             margin-bottom: 20px;
         }
     
         &__address {
-            font-size: 22px;
+            font-size: 14px;
         }
         &__metro {
-            font-size: 18px;
+            font-size: 12px;
             margin-bottom: 20px;
         }
     
         &__email {
-            font-size: 22px;
+            font-size: 14px;
             margin-bottom: 20px;
             display: flex;
                 align-items: center;
@@ -1747,8 +1752,13 @@
         }
     
         &__map {
-            width: 570px;
-            height: 570px;
+            width: 300px !important;
+            height: 300px !important;
+
+            & iframe{
+                width: 300px;
+                height: 300px;
+            }
         }
     }
     
