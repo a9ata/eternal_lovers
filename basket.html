@@ -47,7 +47,45 @@
             <li><a href="reviews.html" class="nav__link">Отзывы</a></li>
         </nav>
       </div>
-    </header>  
+    </header>
+    <section class="cart">
+      <h2 class="cart__title">Корзина</h2>
+      <div class="cart-container">
+        <table>
+            <thead>
+              <tr class="cart-header">
+                <th class="cart-header__product">Продукт</th>
+                <th class="cart-header__name"></th>
+                <th class="cart-header__price">Цена</th>
+                <th class="cart-header__quantity">Количество</th>
+                <th class="cart-header__total">Сумма</th>
+                <th class="cart-header__remove"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cart-item">
+                <td class="cart-item__product"><img src="../public/catalog/lush-dress.svg" alt="Product Image" width="155px"></td>
+                <td class="cart-item__name">Свадебное платье</td>
+                <td class="cart-item__price">120 000 руб.</td>
+                <td class="cart-item__quantity">
+                    <div class="quantity">
+                        <button onclick="changeQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
+                        <button onclick="changeQuantity(1)">+</button>
+                    </div>
+                </td>
+                <td class="cart-item__total" id="total-price">120 000 руб.</td>
+                <td class="cart-item__remove trash-icon"><img src="../public/icon/iconoir_trash-solid.svg" alt="Delete"></td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="total-container">
+            <div class="total-text">Общая стоимость заказа:</div>
+            <div id="overall-total" class="total-price">120 000 руб.</div>
+        </div>
+        <a href="#" class="pay-button">Оплатить</a>
+      </div>
+    </section>
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
@@ -82,7 +120,8 @@
           <p class="footer__copyright-text">© 2024 "Eternal Lovers"</p>
         </div>
       </div>
-    </footer>  
+    </footer>
     <script type="module" src="burger.js"></script>
+    <script src="quantity.js"></script>
   </body>
 </html>

@@ -29,7 +29,7 @@
           <a href="contact.html" class="header__icon"><img src="../public/icon/hugeicons_contact.svg" alt="Contact"></a>
           <a href="favorite.html" class="header__icon"><img src="../public/icon/ph_heart-thin.svg" alt="Favorite"></a>
           <a href="basket.html" class="header__icon"><img src="../public/icon/ph_basket-thin.svg" alt="Basket"></a>
-          <a href="#" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+          <a href="#" id="profile" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
         </div>
         <div class="header__btn">
           <div class="menu-btn">
@@ -162,6 +162,88 @@
         <input type="text" class="consultation__input" placeholder="Планируемая дата свадьбы" required>
         <input type="text" class="consultation__input" placeholder="Мой российский размер" required>
         <textarea class="consultation__textarea" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
+        <label>Выберите услуги:</label>
+        <div class="dropdown">
+          <button type="button" class="dropdown-button">Услуги</button>
+          <div class="dropdown-content">
+            <div>
+              <input type="checkbox" id="usluga1" name="services[]" value="Примерка платья">
+              <label for="usluga1">Примерка платья</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga2" name="services[]" value="Подгонка по размеру">
+              <label for="usluga2">Подгонка по размеру</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga3" name="services[]" value="Отпаривание">
+              <label for="usluga3">Отпаривание</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga4" name="services[]" value="Хранение">
+              <label for="usluga4">Хранение</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga5" name="services[]" value="Организация свадьбы">
+              <label for="usluga5">Организация свадьбы</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga6" name="services[]" value="Фотограф">
+              <label for="usluga6">Фотограф</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga7" name="services[]" value="Видеограф">
+              <label for="usluga7">Видеограф</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga8" name="services[]" value="Ди-джей">
+              <label for="usluga8">Ди-джей</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga9" name="services[]" value="Ведущий">
+              <label for="usluga9">Ведущий</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga10" name="services[]" value="Транспорт">
+              <label for="usluga10">Транспорт</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga11" name="services[]" value="Флористика">
+              <label for="usluga11">Флористика</label>
+            </div>
+            <div>
+              <input type="checkbox" id="usluga12" name="services[]" value="Флористика">
+              <label for="usluga11">Стиль свадьбы</label>
+            </div>
+          </div>
+        </div>
+
+        <label>Место проведения:</label>
+        <div class="dropdown">
+          <button type="button" class="dropdown-button">Место проведения</button>
+          <div class="dropdown-content">
+            <div>
+              <input type="checkbox" id="venue1" name="venue[]" value="Artiland">
+              <label for="venue1">Artiland</label>
+            </div>
+            <div>
+              <input type="checkbox" id="venue2" name="venue[]" value="Жан Реми">
+              <label for="venue2">Жан Реми</label>
+            </div>
+            <div>
+              <input type="checkbox" id="venue3" name="venue[]" value="Carlton">
+              <label for="venue3">Carlton</label>
+            </div>
+            <div>
+              <input type="checkbox" id="venue4" name="venue[]" value="Вилла Ротонда">
+              <label for="venue4">Вилла Ротонда</label>
+            </div>
+            <div>
+              <input type="checkbox" id="venue5" name="venue[]" value="ArtVillage">
+              <label for="venue5">ArtVillage</label>
+            </div>
+          </div>
+        </div>
+        </select>
         <button type="submit" class="consultation__button">Оставить заявку</button>
       </form>
     </section>
@@ -201,5 +283,7 @@
       </div>
     </footer>
     <script src="burger.js"></script>
+    <script src="profile.js"></script>
+    <script src="dropdown.js"></script>
   </body>
 </html>
