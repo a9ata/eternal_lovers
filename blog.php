@@ -2,7 +2,7 @@
 <html lang="en,ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="../public/logo_E&L_title.svg" width="auto"/>
+    <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto"/>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
     <header class="header">
         <div class="header__container">
             <div class="header__logo">
-                <a href="index.html"><img src="../public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
+                <a href="index.html"><img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
             </div>
             <nav class="header__nav">
             <ul class="nav__list">
@@ -25,10 +25,10 @@
             </ul>
             </nav>
             <div class="header__icons">
-            <a href="contact.html" class="header__icon"><img src="../public/icon/hugeicons_contact.svg" alt="Contact"></a>
-            <a href="favorite.html" class="header__icon"><img src="../public/icon/ph_heart-thin.svg" alt="Favorite"></a>
-            <a href="basket.html" class="header__icon"><img src="../public/icon/ph_basket-thin.svg" alt="Basket"></a>
-            <a href="#" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+            <a href="contact.html" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
+            <a href="favorite.html" class="header__icon"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
+            <a href="basket.html" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+            <a href="#" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
             </div>
             <div class="header__btn">
             <div class="menu-btn">
@@ -82,8 +82,8 @@
                 </li>
             </ul>
             <div class="blog__images">
-                <img src="../public/images/Wedding idea 1.svg" alt="Wedding idea 1" class="blog__image">
-                <img src="../public/images/Wedding idea 2.svg" alt="Wedding idea 2" class="blog__image">
+                <img src="public/images/Wedding idea 1.svg" alt="Wedding idea 1" class="blog__image">
+                <img src="public/images/Wedding idea 2.svg" alt="Wedding idea 2" class="blog__image">
             </div>
             <h4 class="blog__subsection-title">Как самостоятельно спланировать свадьбу?</h4>
             <p class="blog__subsection-text">В первую очередь, продумайте ваши пожелания:</p>
@@ -97,8 +97,8 @@
                 <li class="blog__wishlist-item">сколько времени у вас есть: две недели или полтора года?</li>
             </ul>
             <div class="blog__images">
-                <img src="../public/images/Wedding idea 3.svg" alt="Wedding idea 3" class="blog__image">
-                <img src="../public/images/Wedding idea 4.svg" alt="Wedding idea 4" class="blog__image">
+                <img src="public/images/Wedding idea 3.svg" alt="Wedding idea 3" class="blog__image">
+                <img src="public/images/Wedding idea 4.svg" alt="Wedding idea 4" class="blog__image">
             </div>
             <div class="blog__text-block">
                 <p class="blog__text blog__text--wide">Есть различные планеры, которые можно использовать для подготовки к свадьбе, чтобы ничего не забыть. Их можно найти в печатном варианте в книжных магазинах или на маркетплейсах. Конечно, ни один планер, сайт или приложение не сделают индивидуальную работу, не учтут мельчайших деталей, но ключевые моменты там отражены. Будьте щепетильны и дотошны. Продумывайте каждый момент до мельчайших деталей, задавайте множество вопросов, читайте, узнавайте, ищите ответы, продумывайте варианты А, В, С.</p>
@@ -107,7 +107,7 @@
                 <p class="blog__text blog__text--wide">Чтобы организация свадьбы была приятной, на неё нужно настроиться, а в процессе — наливать себе вкусный травяной чай, зажигать свечи и окружать себя спокойной и расслабленной атмосферой, чтобы счастьем был наполнен не только день свадьбы, но и весь процесс организации.</p>
             </div>
             <div>
-                <img src="../public/images/Wedding idea 5.svg" alt="Wedding idea 5" class="blog__image">
+                <img src="public/images/Wedding idea 5.svg" alt="Wedding idea 5" class="blog__image">
             </div>
             <h4 class="blog__subsection-title">Организация свадьбы своими силами пошагово</h4>
             <p class="blog__subsection-text">В первую очередь, продумайте ваши пожелания:</p>
@@ -218,8 +218,8 @@
                 <li class="blog__checklist-item">смета (в случае, если координатор рассчитывается с подрядчиками).</li>
             </ul>  
             <div class="blog__images">
-                <img src="../public/images/Wedding idea 6.svg" alt="Wedding idea 6" class="blog__image">
-                <img src="../public/images/Wedding idea 7.svg" alt="Wedding idea 7" class="blog__image">
+                <img src="public/images/Wedding idea 6.svg" alt="Wedding idea 6" class="blog__image">
+                <img src="public/images/Wedding idea 7.svg" alt="Wedding idea 7" class="blog__image">
             </div>
             <div class="blog__text-section">
                 <p class="blog__text blog__text--wide">Также важно заранее сориентировать всех подрядчиков на координатора, чтобы в день свадьбы они звонили ему и не отвлекали невесту от основных дел.</p>
@@ -235,7 +235,7 @@
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
-          <img src="../public/logo_E&L_title.svg" alt="Eternal Lovers">
+          <img src="public/logo_E&L_title.svg" alt="Eternal Lovers">
         </div>
         <nav class="footer__nav">
             <ul class="footer__nav-list">
@@ -250,16 +250,16 @@
             </ul>
         </nav>
         <div class="footer__socials">
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
         </div>
         <div class="footer__contacts">
           <p class="footer__contacts-phone">8 800 888 88 88</p>
           <p class="footer__contacts-hours">Работаем с 10:00 до 20:00</p>
           <p class="footer__contacts-address">117149, г. Москва, ул. Нежинская, д. 7, кв. 1</p>
           <p class="footer__contacts-metro">Метро "Славянский бульвар" или "Минская"</p>
-          <p class="footer__contacts-email"><img src="../public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
+          <p class="footer__contacts-email"><img src="public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
         </div>
         <div class="footer__copyright">
           <p class="footer__copyright-text">© 2024 "Eternal Lovers"</p>

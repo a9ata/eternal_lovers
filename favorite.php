@@ -2,7 +2,7 @@
 <html lang="en,ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="../public/logo_E&L_title.svg" width="auto"/>
+    <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto"/>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
   <body>
     <header class="header">
       <div class="header__logo">
-        <a href="index.html"><img src="../public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
+        <a href="index.html"><img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
       </div>
       <nav class="header__nav">
         <ul class="nav__list">
@@ -25,9 +25,9 @@
         </ul>
       </nav>
       <div class="header__icons">
-        <a href="contact.html" class="header__icon"><img src="../public/icon/hugeicons_contact.svg" alt="Contact"></a>
-        <a href="basket.html" class="header__icon"><img src="../public/icon/ph_basket-thin.svg" alt="Basket"></a>
-        <a href="#" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+        <a href="contact.html" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
+        <a href="basket.html" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+        <a href="#" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
       </div>
       <div class="header__btn">
         <div class="menu-btn">
@@ -50,7 +50,7 @@
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
-          <img src="../public/logo_E&L_title.svg" alt="Eternal Lovers">
+          <img src="public/logo_E&L_title.svg" alt="Eternal Lovers">
         </div>
         <nav class="footer__nav">
             <ul class="footer__nav-list">
@@ -66,16 +66,16 @@
             </ul>
         </nav>
         <div class="footer__socials">
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
         </div>
         <div class="footer__contacts">
           <p class="footer__contacts-phone">8 800 888 88 88</p>
           <p class="footer__contacts-hours">Работаем с 10:00 до 20:00</p>
           <p class="footer__contacts-address">117149, г. Москва, ул. Нежинская, д. 7, кв. 1</p>
           <p class="footer__contacts-metro">Метро "Славянский бульвар" или "Минская"</p>
-          <p class="footer__contacts-email"><img src="../public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
+          <p class="footer__contacts-email"><img src="public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
         </div>
         <div class="footer__copyright">
           <p class="footer__copyright-text">© 2024 "Eternal Lovers"</p>

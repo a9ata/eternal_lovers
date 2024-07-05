@@ -1,10 +1,11 @@
+<?php ?>
 <!doctype html>
 <html lang="en,ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="../public/logo_E&L_title.svg" width="auto"/>
+    <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto"/>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eternal Lovers</title>
   </head>
@@ -12,24 +13,24 @@
     <header class="header">
       <div class="header__container">
         <div class="header__logo">
-          <img src="../public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px">
+          <img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px">
         </div>
         <nav class="header__nav">
           <ul class="nav__list">
-            <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
             <li class="nav__item"><a href="#about" class="nav__link">О нас</a></li>
             <li class="nav__item"><a href="#consultation" class="nav__link">Консультация</a></li>
             <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
-            <li class="nav__item"><a href="blog.html" class="nav__link">Блог</a></li>
-            <li class="nav__item"><a href="portfolio.html" class="nav__link">Портфолио</a></li>
-            <li class="nav__item"><a href="reviews.html" class="nav__link">Отзывы</a></li>
+            <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
+            <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
           </ul>
         </nav>
         <div class="header__icons">
-          <a href="contact.html" class="header__icon"><img src="../public/icon/hugeicons_contact.svg" alt="Contact"></a>
-          <a href="favorite.html" class="header__icon"><img src="../public/icon/ph_heart-thin.svg" alt="Favorite"></a>
-          <a href="basket.html" class="header__icon"><img src="../public/icon/ph_basket-thin.svg" alt="Basket"></a>
-          <a href="#" id="profile" class="header__icon"><img src="../public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+          <a href="contact.php" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
+          <a href="favorite.php" class="header__icon"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
+          <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+          <a href="profile.php" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
         </div>
         <div class="header__btn">
           <div class="menu-btn">
@@ -39,13 +40,13 @@
           </div>
         </div>
         <nav class="header__menu-burger">
-            <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+            <li><a href="catalog.php" class="nav__link">Каталог</a></li>
             <li><a href="#about" class="nav__link">О нас</a></li>
             <li><a href="#consultation" class="nav__link">Консультация</a></li>
             <li><a href="#services" class="nav__link">Услуги</a></li>
-            <li><a href="blog.html" class="nav__link">Блог</a></li>
-            <li><a href="portfolio.html" class="nav__link">Портфолио</a></li>
-            <li><a href="reviews.html" class="nav__link">Отзывы</a></li>
+            <li><a href="blog.php" class="nav__link">Блог</a></li>
+            <li><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li><a href="reviews.php" class="nav__link">Отзывы</a></li>
         </nav>
       </div>
     </header>
@@ -88,29 +89,29 @@
       <div class="services__container">
         <div class="services__list">
           <div class="services__item">
-            <img src="../public/services-icon/icon_dress.svg" alt="Примерка платья" class="services__icon">
+            <img src="public/services-icon/icon_dress.svg" alt="Примерка платья" class="services__icon">
             <p class="services__text">Примерка платья</p>
           </div>
           <div class="services__item">
-            <img src="../public/services-icon/arcticons_tapemeasure.svg" alt="Подгонка по размеру" class="services__icon">
+            <img src="public/services-icon/arcticons_tapemeasure.svg" alt="Подгонка по размеру" class="services__icon">
             <p class="services__text">Подгонка по размеру</p>
           </div>
           <div class="services__item">
-            <img src="../public/services-icon/icon_iron.svg" alt="Отпаривание" class="services__icon">
+            <img src="public/services-icon/icon_iron.svg" alt="Отпаривание" class="services__icon">
             <p class="services__text">Отпаривание</p>
           </div>
         </div>
         <div class="services__list">
           <div class="services__item">
-            <img src="../public/services-icon/icon_storage.svg" alt="Хранение" class="services__icon">
+            <img src="public/services-icon/icon_storage.svg" alt="Хранение" class="services__icon">
             <p class="services__text">Хранение</p>
           </div>
           <div class="services__item">
-            <img src="../public/services-icon/icon_delivery.svg" alt="Доставка" class="services__icon">
+            <img src="public/services-icon/icon_delivery.svg" alt="Доставка" class="services__icon">
             <p class="services__text">Доставка</p>
           </div>
           <div class="services__item">
-            <img src="../public/services-icon/icon_wedding-organization.svg" alt="Организация свадьбы" class="services__icon">
+            <img src="public/services-icon/icon_wedding-organization.svg" alt="Организация свадьбы" class="services__icon">
             <p class="services__text">Организация свадьбы</p>
           </div>
         </div>
@@ -154,7 +155,7 @@
       <p class="consultation__subtitle">Если у Вас остались вопросы,</p>
       <p class="consultation__subtitle">Если Вы готовы сотрудничать с нами,</p>
       <p class="consultation__subtitle">То оставь свои данные для консультации!</p>
-      <form class="consultation__form">
+      <form class="consultation__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <input type="text" class="consultation__input" placeholder="Имя" required>
         <input type="email" class="consultation__input" placeholder="Mail" required>
         <input type="tel" class="consultation__input" placeholder="8 800 000 00 00" required>
@@ -250,7 +251,7 @@
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
-          <img src="../public/logo_E&L_title.svg" alt="Eternal Lovers">
+          <img src="public/logo_E&L_title.svg" alt="Eternal Lovers">
         </div>
         <nav class="footer__nav">
             <ul class="footer__nav-list">
@@ -266,16 +267,16 @@
             </ul>
         </nav>
         <div class="footer__socials">
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
-          <a href="#" class="footer__social-link"><img src="../public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/streamline_instagram-solid.svg" alt="Instagram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/ic_baseline-telegram.svg" alt="Telegram"></a>
+          <a href="#" class="footer__social-link"><img src="public/icon_social-media/mingcute_vkontakte-fill.svg" alt="VK"></a>
         </div>
         <div class="footer__contacts">
           <p class="footer__contacts-phone">8 800 888 88 88</p>
           <p class="footer__contacts-hours">Работаем с 10:00 до 20:00</p>
           <p class="footer__contacts-address">117149, г. Москва, ул. Нежинская, д. 7, кв. 1</p>
           <p class="footer__contacts-metro">Метро "Славянский бульвар" или "Минская"</p>
-          <p class="footer__contacts-email"><img src="../public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
+          <p class="footer__contacts-email"><img src="public/icon/material-symbols-light_mail-outline.svg" alt=""><a href="mailto:info@eternal-lovers.ru">info@eternal-lovers.ru</a></p>
         </div>
         <div class="footer__copyright">
           <p class="footer__copyright-text">© 2024 "Eternal Lovers"</p>

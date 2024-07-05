@@ -1,5 +1,5 @@
 <?php
-require_once '../config/db.php';
+require_once 'config/db.php';
 session_start();
 
 // Если пользователь уже вошел, перенаправить на главную
@@ -11,17 +11,14 @@ if (isset($_SESSION['username'])) {
 $error = ''; // Переменная для сохранения сообщений об ошибках
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $username = $_POST['name'];
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $captcha = $_POST['captcha'];
+    $access = $_POST['access'];
 
-    // Проверка капчи
-    if ($captcha !== $_SESSION['captcha']) {
-        $error = 'Неверная капча.';
-    } elseif (strlen($password) < 8 || !preg_match("/[a-zA-Z]/", $password) || !preg_match("/\d/", $password) || !preg_match("/\W/", $password)) {
+    if (strlen($password) < 8 || !preg_match("/[a-zA-Z]/", $password) || !preg_match("/\d/", $password) || !preg_match("/\W/", $password)) {
         $error = 'Пароль должен содержать минимум 8 символов, включать буквы, цифры и специальные символы.';
     } elseif ($password !== $confirm_password) {
         $error = 'Пароли не совпадают.';
@@ -49,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en,ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="../public/logo_E&L_title.svg" width="auto"/>
+    <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto"/>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfp7AcqAAAAAHEOtEsAJcKPhRzCS2rTTE8WbD83"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
