@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto"/>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eternal Lovers</title>
@@ -255,15 +255,15 @@
         </div>
         <nav class="footer__nav">
             <ul class="footer__nav-list">
-              <li class="footer__nav-item"><a href="catalog.html" class="footer__nav-link">Каталог</a></li>
+              <li class="footer__nav-item"><a href="catalog.php" class="footer__nav-link">Каталог</a></li>
               <li class="footer__nav-item"><a href="#consultation" class="footer__nav-link">Консультация</a></li>
               <li class="footer__nav-item"><a href="#services" class="footer__nav-link">Услуги</a></li>
             </ul>
             <ul class="footer__nav-list">
               <li class="footer__nav-item"><a href="#about" class="footer__nav-link">О нас</a></li>
-              <li class="footer__nav-item"><a href="blog.html" class="footer__nav-link">Блог</a></li>
-              <li class="footer__nav-item"><a href="portfolio.html" class="footer__nav-link">Портфолио</a></li>
-              <li class="footer__nav-item"><a href="reviews.html" class="footer__nav-link">Отзывы</a></li>
+              <li class="footer__nav-item"><a href="blog.php" class="footer__nav-link">Блог</a></li>
+              <li class="footer__nav-item"><a href="portfolio.php" class="footer__nav-link">Портфолио</a></li>
+              <li class="footer__nav-item"><a href="reviews.php" class="footer__nav-link">Отзывы</a></li>
             </ul>
         </nav>
         <div class="footer__socials">

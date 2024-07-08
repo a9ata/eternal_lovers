@@ -63,11 +63,12 @@
   align-items: center;
   flex-direction: column;
   background-color: #FAE5C4;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 200px;
   margin: 0 auto;
+  padding: 25px;
 }
-.profile button {
+.profile a {
   background-color: #9F6BA0;
   color: white;
   padding: 10px 20px;
@@ -77,6 +78,36 @@
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 20px;
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FAE5C4;
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+  padding: 25px;
+}
+.register-form input {
+  width: 290px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 16px;
+  background-color: transparent;
+}
+.register-form__input::-moz-placeholder {
+  color: black;
+  font-size: 14px;
+  margin: 0;
+}
+.register-form__input::placeholder {
+  color: black;
+  font-size: 14px;
+  margin: 0;
 }
 
 .header__btn {

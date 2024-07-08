@@ -1,24 +1,24 @@
 <?php
-require_once '../models/User.php';
-require_once __DIR__ . '/../config/db.php';
+require_once 'models/User.php';
+require_once 'config/db.php';
 
 session_start();
 
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Создаем экземпляр класса User
     $user = new User();
 
     // Вызываем метод login объекта класса User
-    if ($user->login($username, $password)) {
+    if ($user->login($email, $password)) {
         // Авторизация успешна, устанавливаем сессию
-        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
         // Перенаправляем на главную страницу
-        header("Location: index.html");
+        header("Location: profile.php");
         exit;
     } else {
         $error = 'Неверное имя пользователя или пароль.';
@@ -31,23 +31,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet" />
     <title>Вход</title>
-    <link rel="stylesheet" href="">
 </head>
 <body>
 <div class="login-form">
     <h2>Вход</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        Почта: <input type="email" name="email" required><br>
-        Пароль: <input type="password" name="password" required><br>
+        <input type="email" name="email" placeholder="Почта" required><br>
+        <input type="password" name="password" placeholder="Пароль" required><br>
         <input type="submit" value="Войти">
-  Submit
-</button>
     </form>
     <?php if ($error): ?>
         <p class="error"><?php echo $error; ?></p>
     <?php endif; ?>
 </div>
-<script src="recaptcha.js"></script>
 </body>
 </html>

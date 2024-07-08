@@ -9,10 +9,10 @@ class User {
         $this->db = $conn;
     }
 
-    public function register($username, $password) {
+    public function register($name, $password) {
         // Проверяем, не существует ли уже такой пользователь
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE name = ?");
+        $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -23,18 +23,18 @@ class User {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Вставляем нового пользователя в базу данных
-        $stmt = $this->db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $username, $hashed_password);
+        $stmt = $this->db->prepare("INSERT INTO user (name, password) VALUES (?, ?)");
+        $stmt->bind_param("ss", $name, $hashed_password);
         $success = $stmt->execute();
         $stmt->close();
 
         return $success;
     }
 
-    public function login($username, $password) {
+    public function login($name, $password) {
         // Ищем пользователя с таким логином
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE name = ?");
+        $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows == 0) {
