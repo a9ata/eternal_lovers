@@ -57,40 +57,27 @@
   margin-right: 0;
 }
 
-.profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #FAE5C4;
-  width: 300px;
-  height: 200px;
-  margin: 0 auto;
-  padding: 25px;
-}
-.profile a {
-  background-color: #9F6BA0;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  font-size: 20px;
-  font-weight: normal;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px;
-}
-
+.profile,
+.login-form,
 .register-form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: #FAE5C4;
-  width: 300px;
+  width: 480px;
   height: auto;
   margin: 0 auto;
-  padding: 25px;
+  padding: 25px 0;
 }
+.profile h2,
+.login-form h2,
+.register-form h2 {
+  margin-bottom: 25px;
+  font-weight: lighter;
+}
+.profile input,
+.login-form input,
 .register-form input {
   width: 290px;
   margin-bottom: 20px;
@@ -99,15 +86,35 @@
   font-size: 16px;
   background-color: transparent;
 }
-.register-form__input::-moz-placeholder {
+.profile input::-moz-placeholder, .login-form input::-moz-placeholder, .register-form input::-moz-placeholder {
   color: black;
   font-size: 14px;
   margin: 0;
 }
-.register-form__input::placeholder {
+.profile input::placeholder,
+.login-form input::placeholder,
+.register-form input::placeholder {
   color: black;
   font-size: 14px;
   margin: 0;
+}
+.profile input[type=submit],
+.login-form input[type=submit],
+.register-form input[type=submit] {
+  border: none;
+}
+.profile a,
+.login-form a,
+.register-form a {
+  color: #000;
+  border: none;
+  font-size: 20px;
+  font-weight: lighter;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  text-decoration: none;
+  margin-right: 15px;
 }
 
 .header__btn {

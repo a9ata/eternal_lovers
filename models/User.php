@@ -31,10 +31,10 @@ class User {
         return $success;
     }
 
-    public function login($name, $password) {
-        // Ищем пользователя с таким логином
-        $stmt = $this->db->prepare("SELECT * FROM user WHERE name = ?");
-        $stmt->bind_param("s", $name);
+    public function login($email, $password) {
+        // Ищем пользователя с таким email
+        $stmt = $this->db->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows == 0) {
@@ -45,6 +45,12 @@ class User {
         $stmt->close();
         // Проверяем пароль
         if (password_verify($password, $user['password'])) {
+            // Сохраняем данные пользователя в сессии
+            $_SESSION['id_user'] = $user['id_user'];
+            $_SESSION['name'] = $user['name'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['telephone'] = $user['telephone'];
+            $_SESSION['access'] = $user['access'];
             return true; // Авторизация успешна
         } else {
             return false; // Пароль неверный

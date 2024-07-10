@@ -64,39 +64,29 @@
 }
 
 
-.profile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #FAE5C4;
-    width: 300px;
-    height: 200px;
-    margin: 0 auto;
-    padding: 25px;
-    & a{
-        background-color: #9F6BA0;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        font-size: 20px;
-        font-weight:normal;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        margin-top: 20px;
-    }
-}
 
+///
+// PROFILE
+//
+///
+
+.profile,
+.login-form,
 .register-form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #FAE5C4;
-    width: 300px;
+    width: 480px;
     height: auto;
     margin: 0 auto;
-    padding: 25px;
+    padding: 25px 0;
+
+    & h2{
+        margin-bottom: 25px;
+        font-weight: lighter;
+    }
 
     & input{
         width: 290px;
@@ -107,11 +97,28 @@
         background-color: transparent;
     }
 
-    &__input::placeholder {
+    & input::placeholder {
         color: black;
         font-size: 14px;
         margin: 0;
     }
+
+    input[type=submit] {
+        border: none;
+    }
+    & a{
+    
+        color: #000;
+        border: none;
+        font-size: 20px;
+        font-weight:lighter;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+        text-decoration: none;
+        margin-right: 15px;
+    }
+
 }
 
 .header__btn{

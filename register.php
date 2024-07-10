@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="telephone" placeholder="Телефон" required><br>
         <input type="password" name="password" placeholder="Пароль" required><br>
         <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required><br>
-        <input type="submit" value="Регистрация">
+        <input type="submit" value="Зарегистрироваться">
     </form>
 
     <?php if (!empty($error)): ?>

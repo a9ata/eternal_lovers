@@ -15,16 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Вызываем метод login объекта класса User
     if ($user->login($email, $password)) {
-        // Авторизация успешна, устанавливаем сессию
-        $_SESSION['email'] = $email;
-        // Перенаправляем на главную страницу
+        // Авторизация успешна, перенаправляем на страницу профиля
         header("Location: profile.php");
         exit;
     } else {
         $error = 'Неверное имя пользователя или пароль.';
     }
 }
-
 ?>
 
 <!DOCTYPE html>

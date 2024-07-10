@@ -17,14 +17,14 @@ session_start();
         <h2>Профиль</h2>
         <div class="profile__user-data">
             <?php if (isset($_SESSION['name'], $_SESSION['email'], $_SESSION['telephone'])): ?>
-            <p class="profile__name"><?php echo htmlspecialchars($_SESSION['name']); ?></p>
-            <p class="profile__email"><?php echo htmlspecialchars($_SESSION['email']); ?></p>
+            <p class="profile__name"><?php echo htmlspecialchars($_SESSION['name']); ?></p><br />
+            <p class="profile__email"><?php echo htmlspecialchars($_SESSION['email']); ?></p><br />
             <p class="profile__tel"><?php echo htmlspecialchars($_SESSION['telephone']); ?></p>
             <a href="logout.php">Выйти</a>
         </div>
         <div class="profile__log">
             <?php else: ?>
-            <a href="login.php">Вход</a> |
+            <a href="login.php">Вход</a> 
             <a href="register.php">Регистрация</a>
             <?php endif; ?>
         </div>   
