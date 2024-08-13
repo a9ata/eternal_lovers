@@ -1,3 +1,42 @@
+<?php
+session_start();
+require_once 'config/db.php';
+
+$error = '';
+$success = '';
+
+// Получение данных пользователя из сессии
+$user_data = [];
+$user_id = null;
+if (isset($_SESSION['name'])) {
+    $user_data['name'] = $_SESSION['name'];
+    $user_data['email'] = $_SESSION['email'];
+    $user_id = $_SESSION['id_user'];
+}
+
+// Обработка формы обратной связи
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $comment = $_POST['message'];
+    $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : NULL;
+
+    // Вставка данных в таблицу connection
+    $stmt = $conn->prepare("INSERT INTO connection (name, email, comment, id_user) VALUES (?, ?, ?, ?)");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
+    $stmt->bind_param("sssi", $name, $email, $comment, $id_user);
+
+    if ($stmt->execute()) {
+        $success = "Сообщение успешно отправлено.";
+    } else {
+        $error = "Ошибка при отправке сообщения: " . htmlspecialchars($stmt->error);
+    }
+    $stmt->close();
+}
+?>
+
 <!doctype html>
 <html lang="en,ru">
   <head>
@@ -28,7 +67,11 @@
         <div class="header__icons">
           <a href="favorite.php" class="header__icon"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
           <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
-          <a href="#" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+          <?php if (isset($_SESSION['name'])); ?>
+            <a href="profile.php" class="header__icon">
+              <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
+              <?php echo $_SESSION['name'] ?>
+            </a>
         </div>
         <div class="header__btn">
           <div class="menu-btn">
@@ -64,14 +107,20 @@
         </div>
     </section>
     <section id="consultation" class="consultation feedback">
-      <h2 class="consultation__title feedback__title">Обратная связь</h2>
-      <form class="consultation__form feedback__form">
-        <input type="text" class="consultation__input feedback__input" placeholder="Имя" required>
-        <input type="email" class="consultation__input feedback__input" placeholder="Mail" required>
-        <textarea class="consultation__textarea feedback__textarea" placeholder="Введите ваше сообщение" required></textarea>
-        <button type="submit" class="consultation__button feedback__button">Отправить</button>
-      </form>
-    </section>   
+        <h2 class="consultation__title feedback__title">Обратная связь</h2>
+        <?php if ($error): ?>
+            <div class="error"><?php echo $error; ?></div>
+        <?php endif; ?>
+        <?php if ($success): ?>
+            <div class="success"><?php echo $success; ?></div>
+        <?php endif; ?>
+        <form class="consultation__form feedback__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <input type="text" class="consultation__input feedback__input" name="name" placeholder="Имя" value="<?php echo isset($user_data['name']) ? htmlspecialchars($user_data['name']) : ''; ?>" required>
+            <input type="email" class="consultation__input feedback__input" name="email" placeholder="Mail" value="<?php echo isset($user_data['email']) ? htmlspecialchars($user_data['email']) : ''; ?>" required>
+            <textarea class="consultation__textarea feedback__textarea" name="message" placeholder="Введите ваше сообщение" required></textarea>
+            <button type="submit" class="consultation__button feedback__button">Отправить</button>
+        </form>
+    </section>  
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
@@ -106,7 +155,6 @@
           <p class="footer__copyright-text">© 2024 "Eternal Lovers"</p>
         </div>
       </div>
-    </footer>  
-    <script type="module" src="main.js"></script>
+    </footer>
   </body>
 </html>

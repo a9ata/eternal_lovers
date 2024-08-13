@@ -88,6 +88,12 @@
         font-weight: lighter;
     }
 
+    &__user-data{
+        margin-right: 200px;
+    }
+    &__log{
+        margin-right: 0;
+    }
     & input{
         width: 290px;
         margin-bottom: 20px;

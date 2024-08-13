@@ -76,6 +76,16 @@
   margin-bottom: 25px;
   font-weight: lighter;
 }
+.profile__user-data,
+.login-form__user-data,
+.register-form__user-data {
+  margin-right: 200px;
+}
+.profile__log,
+.login-form__log,
+.register-form__log {
+  margin-right: 0;
+}
 .profile input,
 .login-form input,
 .register-form input {

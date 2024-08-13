@@ -1,5 +1,100 @@
-<?php ?>
-<!doctype html>
+<?php
+session_start();
+require_once 'config/db.php';
+
+$error = '';
+$success = '';
+
+// Получение данных пользователя из сессии
+$user_data = [];
+$user_id = null;
+if (isset($_SESSION['name'])) {
+    $user_data['name'] = $_SESSION['name'];
+    $user_data['email'] = $_SESSION['email'];
+    $user_data['telephone'] = $_SESSION['telephone'];
+    $user_id = $_SESSION['id_user'];
+}
+
+// Обработка формы входа
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['is_admin'] = $user['access'] == 1;
+        header("Location: index.php");
+        exit();
+    } else {
+        $error = "Неверные учетные данные";
+    }
+}
+
+// Получение списка мест
+function getPlaces() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM place");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+// Получение списка услуг
+function getServices() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM service");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+$places = getPlaces();
+$services = getServices();
+
+// Обработка формы консультации
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['consultation'])) {
+    if ($user_id !== null) {
+        $date_fit = $_POST['appointment_date'];
+        $date_wedding = $_POST['wedding_date'];
+        $size = $_POST['size'];
+        $comment = $_POST['dress_list'];
+        $place_ids = $_POST['venue'];
+        $service_ids = $_POST['services'];
+
+        // Преобразование даты из формата дд.мм.гггг в гггг-мм-дд для MySQL
+        $date_fit = date('Y-m-d', strtotime(str_replace('.', '-', $date_fit)));
+        $date_wedding = date('Y-m-d', strtotime(str_replace('.', '-', $date_wedding)));
+
+        // Вставка данных в таблицу message
+        $stmt = $conn->prepare("INSERT INTO message (date_fitt, date_wedding, size, comment, id_user, id_place, id_service) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if ($stmt === false) {
+            die('Prepare failed: ' . htmlspecialchars($conn->error));
+        }
+
+        foreach ($place_ids as $place_id) {
+            foreach ($service_ids as $service_id) {
+                $stmt->bind_param("ssssiii", $date_fit, $date_wedding, $size, $comment, $user_id, $place_id, $service_id);
+                if ($stmt->execute()) {
+                    $success = "Заявка успешно отправлена.";
+                } else {
+                    $error = "Ошибка при отправке заявки: " . htmlspecialchars($stmt->error);
+                }
+            }
+        }
+        $stmt->close();
+    } else {
+        $error = "Пожалуйста, войдите в систему для отправки заявки.";
+    }
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en,ru">
   <head>
     <meta charset="UTF-8" />
@@ -24,13 +119,21 @@
             <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
             <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
             <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+              <li class="nav__item"><a href="admin.php" class="nav__link">Админ-панель</a></li>
+            <?php endif; ?>
           </ul>
         </nav>
         <div class="header__icons">
           <a href="contact.php" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
           <a href="favorite.php" class="header__icon"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
           <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
-          <a href="profile.php" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
+          <a href="profile.php" class="header__icon">
+            <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
+            <?php if (isset($_SESSION['name'])): ?>
+                <?php echo htmlspecialchars($_SESSION['name']); ?>
+            <?php endif; ?>
+          </a>
         </div>
         <div class="header__btn">
           <div class="menu-btn">
@@ -156,94 +259,26 @@
       <p class="consultation__subtitle">Если Вы готовы сотрудничать с нами,</p>
       <p class="consultation__subtitle">То оставь свои данные для консультации!</p>
       <form class="consultation__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <input type="text" class="consultation__input" placeholder="Имя" required>
-        <input type="email" class="consultation__input" placeholder="Mail" required>
-        <input type="tel" class="consultation__input" placeholder="8 800 000 00 00" required>
-        <input type="text" class="consultation__input" placeholder="Удобная дата для примерки (01.01.2000)" required>
-        <input type="text" class="consultation__input" placeholder="Планируемая дата свадьбы" required>
-        <input type="text" class="consultation__input" placeholder="Мой российский размер" required>
-        <textarea class="consultation__textarea" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
+        <input type="text" class="consultation__input" name="name" placeholder="Имя" value="<?php echo isset($user_data['name']) ? htmlspecialchars($user_data['name']) : ''; ?>" required>
+        <input type="email" class="consultation__input" name="email" placeholder="Mail" value="<?php echo isset($user_data['email']) ? htmlspecialchars($user_data['email']) : ''; ?>" required>
+        <input type="tel" class="consultation__input" name="telephone" placeholder="8 800 000 00 00" value="<?php echo isset($user_data['telephone']) ? htmlspecialchars($user_data['telephone']) : ''; ?>" required>
+        <input type="text" class="consultation__input" name="appointment_date" placeholder="Удобная дата для примерки (дд.мм.гггг)" pattern="\d{2}\.\d{2}\.\d{4}" required>
+        <input type="text" class="consultation__input" name="wedding_date" placeholder="Планируемая дата свадьбы (дд.мм.гггг)" pattern="\d{2}\.\d{2}\.\d{4}" required>
+        <input type="text" class="consultation__input" name="size" placeholder="Мой российский размер" required>
+        <textarea class="consultation__textarea" name="dress_list" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
+
         <label>Выберите услуги:</label>
-        <div class="dropdown">
-          <button type="button" class="dropdown-button">Услуги</button>
-          <div class="dropdown-content">
-            <div>
-              <input type="checkbox" id="usluga1" name="services[]" value="Примерка платья">
-              <label for="usluga1">Примерка платья</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga2" name="services[]" value="Подгонка по размеру">
-              <label for="usluga2">Подгонка по размеру</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga3" name="services[]" value="Отпаривание">
-              <label for="usluga3">Отпаривание</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga4" name="services[]" value="Хранение">
-              <label for="usluga4">Хранение</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga5" name="services[]" value="Организация свадьбы">
-              <label for="usluga5">Организация свадьбы</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga6" name="services[]" value="Фотограф">
-              <label for="usluga6">Фотограф</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga7" name="services[]" value="Видеограф">
-              <label for="usluga7">Видеограф</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga8" name="services[]" value="Ди-джей">
-              <label for="usluga8">Ди-джей</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga9" name="services[]" value="Ведущий">
-              <label for="usluga9">Ведущий</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga10" name="services[]" value="Транспорт">
-              <label for="usluga10">Транспорт</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga11" name="services[]" value="Флористика">
-              <label for="usluga11">Флористика</label>
-            </div>
-            <div>
-              <input type="checkbox" id="usluga12" name="services[]" value="Флористика">
-              <label for="usluga11">Стиль свадьбы</label>
-            </div>
-          </div>
-        </div>
+        <select name="services[]" multiple required>
+          <?php foreach ($services as $service): ?>
+            <option value="<?php echo htmlspecialchars($service['id_service']); ?>"><?php echo htmlspecialchars($service['title']); ?></option>
+          <?php endforeach; ?>
+        </select>
 
         <label>Место проведения:</label>
-        <div class="dropdown">
-          <button type="button" class="dropdown-button">Место проведения</button>
-          <div class="dropdown-content">
-            <div>
-              <input type="checkbox" id="venue1" name="venue[]" value="Artiland">
-              <label for="venue1">Artiland</label>
-            </div>
-            <div>
-              <input type="checkbox" id="venue2" name="venue[]" value="Жан Реми">
-              <label for="venue2">Жан Реми</label>
-            </div>
-            <div>
-              <input type="checkbox" id="venue3" name="venue[]" value="Carlton">
-              <label for="venue3">Carlton</label>
-            </div>
-            <div>
-              <input type="checkbox" id="venue4" name="venue[]" value="Вилла Ротонда">
-              <label for="venue4">Вилла Ротонда</label>
-            </div>
-            <div>
-              <input type="checkbox" id="venue5" name="venue[]" value="ArtVillage">
-              <label for="venue5">ArtVillage</label>
-            </div>
-          </div>
-        </div>
+        <select name="venue[]" multiple required>
+          <?php foreach ($places as $place): ?>
+            <option value="<?php echo htmlspecialchars($place['id_place']); ?>"><?php echo htmlspecialchars($place['title']); ?></option>
+          <?php endforeach; ?>
         </select>
         <button type="submit" class="consultation__button">Оставить заявку</button>
       </form>
@@ -284,7 +319,5 @@
       </div>
     </footer>
     <script src="burger.js"></script>
-    <script src="profile.js"></script>
-    <script src="dropdown.js"></script>
   </body>
 </html>

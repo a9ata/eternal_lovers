@@ -51,7 +51,8 @@ class User {
             $_SESSION['email'] = $user['email'];
             $_SESSION['telephone'] = $user['telephone'];
             $_SESSION['access'] = $user['access'];
-            return true; // Авторизация успешна
+            return $user['access']; // Возвращаем уровень доступа
+            // return true; // Авторизация успешна
         } else {
             return false; // Пароль неверный
         }

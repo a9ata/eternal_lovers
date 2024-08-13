@@ -19,9 +19,9 @@ session_start();
             <?php if (isset($_SESSION['name'], $_SESSION['email'], $_SESSION['telephone'])): ?>
             <p class="profile__name"><?php echo htmlspecialchars($_SESSION['name']); ?></p><br />
             <p class="profile__email"><?php echo htmlspecialchars($_SESSION['email']); ?></p><br />
-            <p class="profile__tel"><?php echo htmlspecialchars($_SESSION['telephone']); ?></p>
-            <a href="logout.php">Выйти</a>
+            <p class="profile__tel"><?php echo htmlspecialchars($_SESSION['telephone']); ?></p>   
         </div>
+        <a href="logout.php">Выйти</a>
         <div class="profile__log">
             <?php else: ?>
             <a href="login.php">Вход</a> 

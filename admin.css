@@ -1,0 +1,145 @@
+.section-admin{
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add {
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add__title {
+    font-size: 30px;
+    font-weight: regular;
+}
+.add__subtitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.add__form,
+.change__form {
+    width: 390.16px;
+    background-color: #F3F3EB;
+    padding: 35px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.add__input, .add__textarea,
+.change__input {
+    width: 325px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    background-color: transparent;
+}
+.add__input::-moz-placeholder, .add__textarea::-moz-placeholder {
+    color: black;
+    font-size: 14px;
+    margin: 0;
+}
+.add__input::placeholder, .add__textarea::placeholder {
+    color: black;
+    font-size: 14px;
+    margin: 0;
+}
+.add__textarea {
+    resize: vertical;
+}
+.add__button,
+.change__button {
+    background-color: #617EE4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+.add__button:hover,
+.change__button:hover {
+    background-color: #fff;
+    color: #617EE4;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.table__header {
+    background-color: #D59CF8;
+    color: black;
+}
+
+.table__header-cell {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table__body {
+    background-color: #ffffff;
+}
+
+.table__row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table__cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table__actions {
+    display: flex;
+    gap: 10px;
+}
+
+.table__form {
+    display: inline-block;
+}
+
+.table__button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.table__button--edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table__button--delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.table__button--edit:hover,
+.table__button--delete:hover {
+    opacity: 0.8;
+}
+
+.table__image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
