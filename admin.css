@@ -124,7 +124,7 @@
 }
 
 .table__button--edit {
-    background-color: #4CAF50;
+    background-color: #7AC74F;
     color: white;
 }
 
@@ -143,3 +143,18 @@
     max-height: 100px;
     object-fit: cover;
 }
+
+.btn__request-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #617EE4;
+    color: #f9f9f9;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn__request-link:hover {
+    background-color: #f9f9f9;
+    color: #617EE4;
+}
+

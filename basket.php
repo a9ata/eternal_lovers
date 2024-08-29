@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once 'config/db.php';
+
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['id_user'];
+
+// Извлекаем товары из корзины для текущего пользователя
+$stmt = $conn->prepare("SELECT cart.id_cart, product.title, product.price, product.photo FROM cart JOIN product ON cart.id_product = product.id_product WHERE cart.id_user = ? AND cart.status = 'Не оплачен'");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$cart_items = $result->fetch_all(MYSQLI_ASSOC);
+
+$total_price = array_sum(array_column($cart_items, 'price'));
+?>
+
 <!doctype html>
 <html lang="en,ru">
   <head>
@@ -51,39 +72,38 @@
     <section class="cart">
       <h2 class="cart__title">Корзина</h2>
       <div class="cart-container">
-        <table>
-            <thead>
-              <tr class="cart-header">
-                <th class="cart-header__product">Продукт</th>
-                <th class="cart-header__name"></th>
-                <th class="cart-header__price">Цена</th>
-                <th class="cart-header__quantity">Количество</th>
-                <th class="cart-header__total">Сумма</th>
-                <th class="cart-header__remove"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="cart-item">
-                <td class="cart-item__product"><img src="public/catalog/lush-dress.svg" alt="Product Image" width="155px"></td>
-                <td class="cart-item__name">Свадебное платье</td>
-                <td class="cart-item__price">120 000 руб.</td>
-                <td class="cart-item__quantity">
-                    <div class="quantity">
-                        <button onclick="changeQuantity(-1)">-</button>
-                        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
-                        <button onclick="changeQuantity(1)">+</button>
-                    </div>
-                </td>
-                <td class="cart-item__total" id="total-price">120 000 руб.</td>
-                <td class="cart-item__remove trash-icon"><img src="public/icon/iconoir_trash-solid.svg" alt="Delete"></td>
-              </tr>
-            </tbody>
-        </table>
-        <div class="total-container">
-            <div class="total-text">Общая стоимость заказа:</div>
-            <div id="overall-total" class="total-price">120 000 руб.</div>
-        </div>
-        <a href="#" class="pay-button">Оплатить</a>
+          <table>
+              <thead>
+                <tr class="cart-header">
+                  <th class="cart-header__product">Продукт</th>
+                  <th class="cart-header__name"></th>
+                  <th class="cart-header__price">Цена</th>
+                  <th class="cart-header__remove"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($cart_items as $item): ?>
+                <tr class="cart-item">
+                  <td class="cart-item__product"><img src="data:image/jpeg;base64,<?php echo base64_encode($item['photo']); ?>" alt="Product Image" width="155px"></td>
+                  <td class="cart-item__name"><?php echo htmlspecialchars($item['title']); ?></td>
+                  <td class="cart-item__price"><?php echo number_format($item['price'], 0, ',', ' '); ?> руб.</td>
+                  <td class="cart-item__remove trash-icon">
+                      <form action="remove_from_cart.php" method="POST">
+                          <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($item['id_cart']); ?>">
+                          <button type="submit" class="remove-button"><img src="public/icon/iconoir_trash-solid.svg" alt="Delete"></button>
+                      </form>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+          </table>
+          <div class="total-container">
+              <div class="total-text">Общая стоимость заказа:</div>
+              <div id="overall-total" class="total-price"><?php echo number_format($total_price, 0, ',', ' '); ?> руб.</div>
+          </div>
+          <form action="checkout.php" method="POST">
+              <button type="submit" class="pay-button">Оплатить</button>
+          </form>
       </div>
     </section>
     <footer class="footer">

@@ -380,6 +380,42 @@
 .consultation__textarea {
   resize: vertical;
 }
+.consultation__select {
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background-color: #A9DF81;
+  color: #000000;
+  font-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.consultation__select option:checked {
+  background-color: #9F6BA0;
+  color: white;
+}
+.consultation select::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.consultation select::-webkit-scrollbar-track {
+  background: transparent;
+}
+.consultation select::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 10px;
+}
+.consultation select::-ms-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.consultation select::-ms-thumb {
+  background-color: black;
+  border-radius: 10px;
+}
 .consultation .dropdown {
   position: relative;
   display: inline-block;
@@ -532,7 +568,7 @@
 }
 .blog__content {
   margin: 0 auto;
-  width: 1450px;
+  width: 1200px;
 }
 .blog__subtitle {
   font-size: 35px;
@@ -684,13 +720,13 @@
 }
 .catalog__filters {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
 }
 .catalog__filter {
   background-color: #FAE5C4;
   padding: 10px;
   border-radius: 5px;
+  margin: 0 20px;
 }
 .catalog__filter-title {
   margin-top: 0;

@@ -268,14 +268,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['consultation'])) {
         <textarea class="consultation__textarea" name="dress_list" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
 
         <label>Выберите услуги:</label>
-        <select name="services[]" multiple required>
+        <select name="services[]" class="consultation__select" multiple required>
           <?php foreach ($services as $service): ?>
             <option value="<?php echo htmlspecialchars($service['id_service']); ?>"><?php echo htmlspecialchars($service['title']); ?></option>
           <?php endforeach; ?>
         </select>
 
         <label>Место проведения:</label>
-        <select name="venue[]" multiple required>
+        <select name="venue[]" class="consultation__select" multiple required>
           <?php foreach ($places as $place): ?>
             <option value="<?php echo htmlspecialchars($place['id_place']); ?>"><?php echo htmlspecialchars($place['title']); ?></option>
           <?php endforeach; ?>

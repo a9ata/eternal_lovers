@@ -178,8 +178,17 @@ $types = getTypes();
             <div class="catalog__item">
                 <img src="data:image/jpeg;base64,<?php echo base64_encode($product['photo']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>" class="catalog__item-image">
                 <div class="catalog__item-icons">
-                    <a href="#" class="catalog__item-favorite"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
-                    <a href="#" class="catalog__item-basket"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+                    <form action="handle_action.php" method="POST" class="catalog__item-form">
+                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
+                        
+                        <button type="submit" name="action" value="add_to_cart" class="catalog__item-basket">
+                            <img src="public/icon/ph_basket-thin.svg" alt="Basket">
+                        </button>
+                        
+                        <button type="submit" name="action" value="add_to_favorite" class="catalog__item-favorite">
+                            <img src="public/icon/ph_heart-thin.svg" alt="Favorite">
+                        </button>
+                    </form>
                 </div>
                 <p class="catalog__item-price"><?php echo number_format($product['price'], 0, ',', ' '); ?> руб.</p>
                 <p class="catalog__item-title"><?php echo htmlspecialchars($product['title']); ?></p>

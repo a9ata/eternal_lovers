@@ -1,3 +1,34 @@
+<?php
+session_start();
+require_once 'config/db.php';
+
+// Проверяем, авторизован ли пользователь
+if (!isset($_SESSION['id_user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['id_user']; // Получаем ID пользователя из сессии
+
+// Извлекаем товары из избранного для текущего пользователя
+$stmt = $conn->prepare("
+    SELECT product.id_product, product.title, product.price, product.photo 
+    FROM favorite 
+    JOIN product ON favorite.id_product = product.id_product 
+    WHERE favorite.id_user = ?
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$favorites = $result->fetch_all(MYSQLI_ASSOC);
+
+// Проверяем, есть ли товары в избранном
+if (empty($favorites)) {
+    $favorites = []; // Устанавливаем пустой массив, если ничего не найдено
+}
+
+?>
+
 <!doctype html>
 <html lang="en,ru">
   <head>
@@ -9,44 +40,76 @@
     <title>Eternal Lovers</title>
   </head>
   <body>
-    <header class="header">
-      <div class="header__logo">
-        <a href="index.php"><img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
-      </div>
-      <nav class="header__nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
-          <li class="nav__item"><a href="index.php#about" class="nav__link">О нас</a></li>
-          <li class="nav__item"><a href="index.php#consultation" class="nav__link">Консультация</a></li>
-          <li class="nav__item"><a href="index.php#services" class="nav__link">Услуги</a></li>
-          <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
-          <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
-          <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
-        </ul>
-      </nav>
-      <div class="header__icons">
-        <a href="contact.php" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
-        <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
-        <a href="#" class="header__icon"><img src="public/icon/iconamoon_profile-light.svg" alt="Profile"></a>
-      </div>
-      <div class="header__btn">
-        <div class="menu-btn">
-          <span></span>
-          <span></span>
-          <span></span>
+  <header class="header">
+      <div class="header__container">
+        <div class="header__logo">
+          <a href="index.php"><img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
         </div>
+        <nav class="header__nav">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li class="nav__item"><a href="index.php#services" class="nav__link">Услуги</a></li>
+            <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
+            <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
+          </ul>
+        </nav>
+        <div class="header__icons">
+          <a href="contact.php" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
+          <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+          <?php if (isset($_SESSION['name'])): ?>
+            <a href="profile.php" class="header__icon">
+              <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
+              <?php echo $_SESSION['name'] ?>
+            </a>
+          <?php endif; ?>
+        </div>
+        <div class="header__btn">
+          <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <nav class="header__menu-burger">
+            <li><a href="catalog.php" class="nav__link">Каталог</a></li>
+            <li><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li><a href="index.php#services" class="nav__link">Услуги</a></li>
+            <li><a href="blog.php" class="nav__link">Блог</a></li>
+            <li><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li><a href="reviews.php" class="nav__link">Отзывы</a></li>
+        </nav>
       </div>
-      <nav class="header__menu-burger">
-          <li><a href="catalog.php" class="nav__link">Каталог</a></li>
-          <li><a href="index.php#about" class="nav__link">О нас</a></li>
-          <li><a href="index.php#consultation" class="nav__link">Консультация</a></li>
-          <li><a href="index.php#services" class="nav__link">Услуги</a></li>
-          <li><a href="blog.php" class="nav__link">Блог</a></li>
-          <li><a href="portfolio.php" class="nav__link">Портфолио</a></li>
-          <li><a href="reviews.php" class="nav__link">Отзывы</a></li>
-      </nav>  
-    </div>
     </header>
+    <section class="favorites">
+        <h1 class="favorites__title">Избранные товары</h1>
+        <div class="favorites__items">
+            <?php if (empty($favorites)): ?>
+              <p>Ваш список избранных товаров пуст.</p>
+            <?php else: ?>
+              <?php foreach ($favorites as $product): ?>
+                <div class="favorites__item">
+                  <img src="data:image/jpeg;base64,<?php echo base64_encode($product['photo']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>" class="favorites__item-image">
+                  <div class="favorites__item-details">
+                    <p class="favorites__item-title"><?php echo htmlspecialchars($product['title']); ?></p>
+                    <p class="favorites__item-price"><?php echo number_format($product['price'], 0, ',', ' '); ?> руб.</p>
+                    <form action="handle_action.php" method="POST" class="favorites__item-form">
+                      <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
+                      <button type="submit" name="action" value="remove_from_favorite" class="favorites__item-remove">Удалить из избранного</button>
+                      <button type="submit" name="action" value="add_to_cart" class="catalog__item-basket">
+                        <img src="public/icon/ph_basket-thin.svg" alt="Basket">
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </section>
+
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">

@@ -17,11 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $access = $user->login($email, $password);
     if ($access !== false) {
         // Авторизация успешна, перенаправляем на соответствующую страницу
-        if ($access == 1) {
-            // Если админ, перенаправляем на страницу админа
-            header("Location: admin.php ");
+        $_SESSION['username'] = $email;
+        $_SESSION['is_admin'] = $access == 1;
+
+        if ($_SESSION['is_admin']) {
+            header("Location: admin.php");
         } else {
-            // Если обычный пользователь, перенаправляем на главную страницу
             header("Location: index.php");
         }
         exit;
@@ -30,24 +31,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Обработка reCAPTCHA (остается как есть)
 $secret = '6LcC6iAqAAAAAIGVh_HoytOXnU9imh0af-yvaMmU';
- 
+
 if (!empty($_POST['g-recaptcha-response'])) {
-	$curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_POST, true);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-	$out = curl_exec($curl);
-	curl_close($curl);
-	
-	$out = json_decode($out);
-	if ($out->success == true) {
-		$error = false;
-	} 
-}    
- 
+    $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+    $out = curl_exec($curl);
+    curl_close($curl);
+
+    $out = json_decode($out);
+    if ($out->success == true) {
+        $error = false;
+    }
+}
+
 if ($error) {
-	echo 'Ошибка заполнения капчи.';
+    echo 'Ошибка заполнения капчи.';
 }
 
 ?>
@@ -75,19 +77,15 @@ if ($error) {
         <p class="error"><?php echo $error; ?></p>
     <?php endif; ?>
 </div>
+
 <script>
 function onClick(e) {
-e.preventDefault();
-grecaptcha.enterprise.ready(async () => {
-const token = await grecaptcha.enterprise.execute('6LcC6iAqAAAAAIGVh_HoytOXnU9imh0af-yvaMmU', {action: 'LOGIN'});
-});
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+        const token = await grecaptcha.enterprise.execute('6LcC6iAqAAAAAIGVh_HoytOXnU9imh0af-yvaMmU', {action: 'LOGIN'});
+    });
 }
 </script>
 
 </body>
-<script>
-function onSubmit(token){
-  document.getElementById("demo-form").submit();
-}
-</script>
 </html>
