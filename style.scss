@@ -5,16 +5,23 @@
     font-family: 'Jost';
 }
 
+body {
+    padding-top: 60px;
+}
+
 .header{
     width: 100%;
     background-color: #D59CF8;
     padding: 3px 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
     
     &__container{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 280px;
+        margin: 0 240px;
     }
 
 }
@@ -45,7 +52,7 @@
     color: #000;
     font-size: 14px;
 }
-.nav__item:nth-child(7){
+.nav__item:nth-child(8){
     margin-right: 0;
 }
 
@@ -794,7 +801,8 @@
     }
 }
 
-.catalog {
+.catalog,
+.favorites {
     padding: 20px;
     max-width: 1596px;
     margin: 0 162px;
@@ -807,7 +815,6 @@
 
     &__filters {
         display: flex;
-        // justify-content: space-between;
         margin-bottom: 20px;
     }
 
@@ -840,6 +847,55 @@
                 justify-content: space-between;
             }
         }
+
+    }
+
+    .filter__btn{
+        background-color: #617EE4;
+        color: white;
+        padding: 10px;
+        border: none;
+        font-size: 18px;
+        font-weight: regular;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin: 20px;
+    }
+
+    .filter__btn:hover,
+    &__item-remove:hover {
+        background-color: #f9f9f9;
+        color: #617EE4;
+    }
+
+    &__item-favorite,
+    &__item-basket{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        outline: none; 
+    }
+
+    
+    &__item-remove{
+        background-color: #617EE4;
+        border: none;
+        cursor: pointer;
+        
+        outline: none;
+        color: #f9f9f9;
+        padding: 10px;
+    }
+    
+    
+    &__item-favorite:hover img {
+        filter: brightness(0.8); 
+    }
+    
+    
+    &__item-favorite.active img {
+        content: url('public/icon/ph_heart-fill.svg');
     }
 
     &__items {
@@ -910,32 +966,28 @@
         text-align: left;
     }
 
-    .quantity {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .quantity button {
-        width: 30px;
-        height: 30px;
-        background-color: #fff;
+    .quantity-decrease,
+    .quantity-increase{
+        background-color: transparent;
         border: none;
-    }
-    .quantity input {
-        width: 50px;
-        text-align: center;
-        margin: 0 5px;
-        border: none;
-        -moz-appearance: textfield;
-        -webkit-appearance: none;
-        appearance: none;
+        cursor: pointer;
+        padding: 0;
+        outline: none;
+        font-size: 20px;
     }
 
-    .quantity input::-webkit-outer-spin-button,
-    .quantity input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+    .quantity-value{
+        margin: 0 5px;
     }
+
+    .remove-button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        outline: none;
+    }
+    
     .total-container {
         display: flex;
         justify-content: space-between;

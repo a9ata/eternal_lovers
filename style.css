@@ -4,16 +4,23 @@
   font-family: "Jost";
 }
 
+body {
+  padding-top: 60px;
+}
+
 .header {
   width: 100%;
   background-color: #D59CF8;
   padding: 3px 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 }
 .header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 280px;
+  margin: 0 240px;
 }
 
 .header__logo {
@@ -43,7 +50,7 @@
   font-size: 14px;
 }
 
-.nav__item:nth-child(7) {
+.nav__item:nth-child(8) {
   margin-right: 0;
 }
 
@@ -708,77 +715,136 @@
   margin-left: 50px;
 }
 
-.catalog {
+.catalog,
+.favorites {
   padding: 20px;
   max-width: 1596px;
   margin: 0 162px;
 }
-.catalog__title {
+.catalog__title,
+.favorites__title {
   text-align: center;
   margin-bottom: 20px;
   font-weight: lighter;
 }
-.catalog__filters {
+.catalog__filters,
+.favorites__filters {
   display: flex;
   margin-bottom: 20px;
 }
-.catalog__filter {
+.catalog__filter,
+.favorites__filter {
   background-color: #FAE5C4;
   padding: 10px;
   border-radius: 5px;
   margin: 0 20px;
 }
-.catalog__filter-title {
+.catalog__filter-title,
+.favorites__filter-title {
   margin-top: 0;
   font-size: 16px;
   font-weight: lighter;
 }
-.catalog__filter-list {
+.catalog__filter-list,
+.favorites__filter-list {
   list-style: none;
   padding: 0;
 }
-.catalog__filter-item {
+.catalog__filter-item,
+.favorites__filter-item {
   margin-bottom: 5px;
   justify-content: space-between;
 }
-.catalog__filter-item label {
+.catalog__filter-item label,
+.favorites__filter-item label {
   font-size: 14px;
   font-weight: lighter;
   display: flex;
   justify-content: space-between;
 }
-.catalog__items {
+.catalog .filter__btn,
+.favorites .filter__btn {
+  background-color: #617EE4;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: regular;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 20px;
+}
+.catalog .filter__btn:hover, .catalog__item-remove:hover,
+.favorites .filter__btn:hover,
+.favorites__item-remove:hover {
+  background-color: #f9f9f9;
+  color: #617EE4;
+}
+.catalog__item-favorite, .catalog__item-basket,
+.favorites__item-favorite,
+.favorites__item-basket {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+.catalog__item-remove,
+.favorites__item-remove {
+  background-color: #617EE4;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #f9f9f9;
+  padding: 10px;
+}
+.catalog__item-favorite:hover img,
+.favorites__item-favorite:hover img {
+  filter: brightness(0.8);
+}
+.catalog__item-favorite.active img,
+.favorites__item-favorite.active img {
+  content: url("public/icon/ph_heart-fill.svg");
+}
+.catalog__items,
+.favorites__items {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
-.catalog__item {
+.catalog__item,
+.favorites__item {
   box-sizing: border-box;
   text-align: left;
   position: relative;
 }
-.catalog__item-image-wrapper {
+.catalog__item-image-wrapper,
+.favorites__item-image-wrapper {
   position: relative;
 }
-.catalog__item-image {
+.catalog__item-image,
+.favorites__item-image {
   width: 320px;
   height: 480px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.catalog__item-favorite {
+.catalog__item-favorite,
+.favorites__item-favorite {
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
 }
-.catalog__item-price {
+.catalog__item-price,
+.favorites__item-price {
   font-size: 18px;
   color: #333;
   margin: 10px 0;
   font-weight: lighter;
 }
-.catalog__item-title {
+.catalog__item-title,
+.favorites__item-title {
   font-size: 16px;
   font-weight: lighter;
   margin: 10px 0;
@@ -807,30 +873,24 @@
 .cart .cart-item td {
   text-align: left;
 }
-.cart .quantity {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.cart .quantity button {
-  width: 30px;
-  height: 30px;
-  background-color: #fff;
+.cart .quantity-decrease,
+.cart .quantity-increase {
+  background-color: transparent;
   border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  font-size: 20px;
 }
-.cart .quantity input {
-  width: 50px;
-  text-align: center;
+.cart .quantity-value {
   margin: 0 5px;
-  border: none;
-  -moz-appearance: textfield;
-  -webkit-appearance: none;
-  appearance: none;
 }
-.cart .quantity input::-webkit-outer-spin-button,
-.cart .quantity input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.cart .remove-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
 }
 .cart .total-container {
   display: flex;

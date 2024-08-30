@@ -98,10 +98,10 @@ if (empty($favorites)) {
                     <p class="favorites__item-price"><?php echo number_format($product['price'], 0, ',', ' '); ?> руб.</p>
                     <form action="handle_action.php" method="POST" class="favorites__item-form">
                       <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
-                      <button type="submit" name="action" value="remove_from_favorite" class="favorites__item-remove">Удалить из избранного</button>
                       <button type="submit" name="action" value="add_to_cart" class="catalog__item-basket">
                         <img src="public/icon/ph_basket-thin.svg" alt="Basket">
                       </button>
+                      <button type="submit" name="action" value="remove_from_favorite" class="favorites__item-remove">Удалить</button>
                     </form>
                   </div>
                 </div>

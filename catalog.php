@@ -135,16 +135,16 @@ $types = getTypes();
                 <h2 class="catalog__filter-title">Сортировать по цене</h2>
                 <ul class="catalog__filter-list">
                     <li class="catalog__filter-item">
-                        <label>3 000 - 15 000 <input type="radio" name="price_range" value="3000-15000" <?php echo $min_price == 3000 && $max_price == 15000 ? 'checked' : ''; ?>></label>
+                        <label>3 000 - 15 000 <input type="checkbox" name="price_range" value="3000-15000" <?php echo $min_price == 3000 && $max_price == 15000 ? 'checked' : ''; ?>></label>
                     </li>
                     <li class="catalog__filter-item">
-                        <label>15 000 - 30 000 <input type="radio" name="price_range" value="15000-30000" <?php echo $min_price == 15000 && $max_price == 30000 ? 'checked' : ''; ?>></label>
+                        <label>15 000 - 30 000 <input type="checkbox" name="price_range" value="15000-30000" <?php echo $min_price == 15000 && $max_price == 30000 ? 'checked' : ''; ?>></label>
                     </li>
                     <li class="catalog__filter-item">
-                        <label>30 000 - 50 000 <input type="radio" name="price_range" value="30000-50000" <?php echo $min_price == 30000 && $max_price == 50000 ? 'checked' : ''; ?>></label>
+                        <label>30 000 - 50 000 <input type="checkbox" name="price_range" value="30000-50000" <?php echo $min_price == 30000 && $max_price == 50000 ? 'checked' : ''; ?>></label>
                     </li>
                     <li class="catalog__filter-item">
-                        <label>50 000 - 100 000 <input type="radio" name="price_range" value="50000-100000" <?php echo $min_price == 50000 && $max_price == 100000 ? 'checked' : ''; ?>></label>
+                        <label>50 000 - 100 000 <input type="checkbox" name="price_range" value="50000-100000" <?php echo $min_price == 50000 && $max_price == 100000 ? 'checked' : ''; ?>></label>
                     </li>
                 </ul>
             </div>
@@ -171,7 +171,7 @@ $types = getTypes();
                 </ul>
             </div>
         </div>
-        <button type="submit">Фильтровать</button>
+        <button type="submit" class="filter__btn">Фильтровать</button>
     </form>
     <div class="catalog__items" id="catalog-items">
         <?php foreach ($products as $product): ?>
@@ -231,5 +231,6 @@ $types = getTypes();
     </div>
 </footer>
 <script type="module" src="burger.js"></script>
+<script type="module" src="heart_active.js"></script>
 </body>
 </html>

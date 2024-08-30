@@ -7,16 +7,23 @@ if (!isset($_SESSION['id_user'])) {
     exit();
 }
 
+$stmt = $conn->prepare("SELECT cart.id_cart, product.title, product.price, product.photo, cart.quantity FROM cart JOIN product ON cart.id_product = product.id_product WHERE cart.id_user = ? AND cart.status = 'Не оплачен'");
+
+
 $user_id = $_SESSION['id_user'];
 
 // Извлекаем товары из корзины для текущего пользователя
-$stmt = $conn->prepare("SELECT cart.id_cart, product.title, product.price, product.photo FROM cart JOIN product ON cart.id_product = product.id_product WHERE cart.id_user = ? AND cart.status = 'Не оплачен'");
+$stmt = $conn->prepare("SELECT cart.id_cart, product.title, product.price, product.photo, cart.quantity FROM cart JOIN product ON cart.id_product = product.id_product WHERE cart.id_user = ? AND cart.status = 'Не оплачен'");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $cart_items = $result->fetch_all(MYSQLI_ASSOC);
 
-$total_price = array_sum(array_column($cart_items, 'price'));
+// Подсчёт общей суммы
+$total_price = 0;
+foreach ($cart_items as $item) {
+    $total_price += $item['price'] * $item['quantity'];
+}
 ?>
 
 <!doctype html>
@@ -75,9 +82,10 @@ $total_price = array_sum(array_column($cart_items, 'price'));
           <table>
               <thead>
                 <tr class="cart-header">
-                  <th class="cart-header__product">Продукт</th>
-                  <th class="cart-header__name"></th>
+                  <th class="cart-header__product">Товар</th>
+                  <th class="cart-header__name">Наименование</th>
                   <th class="cart-header__price">Цена</th>
+                  <th class="cart-header__quantity">Количество</th>
                   <th class="cart-header__remove"></th>
                 </tr>
               </thead>
@@ -87,6 +95,11 @@ $total_price = array_sum(array_column($cart_items, 'price'));
                   <td class="cart-item__product"><img src="data:image/jpeg;base64,<?php echo base64_encode($item['photo']); ?>" alt="Product Image" width="155px"></td>
                   <td class="cart-item__name"><?php echo htmlspecialchars($item['title']); ?></td>
                   <td class="cart-item__price"><?php echo number_format($item['price'], 0, ',', ' '); ?> руб.</td>
+                  <td class="cart-item__quantity">
+                    <button class="quantity-decrease" data-cart-id="<?php echo $item['id_cart']; ?>">-</button>
+                      <span class="quantity-value"><?php echo htmlspecialchars($item['quantity']); ?></span>
+                    <button class="quantity-increase" data-cart-id="<?php echo $item['id_cart']; ?>">+</button>
+                  </td>
                   <td class="cart-item__remove trash-icon">
                       <form action="remove_from_cart.php" method="POST">
                           <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($item['id_cart']); ?>">
@@ -142,5 +155,6 @@ $total_price = array_sum(array_column($cart_items, 'price'));
       </div>
     </footer>
     <script type="module" src="burger.js"></script>
+    <script type="module" src="quantity.js"></script>
   </body>
 </html>
