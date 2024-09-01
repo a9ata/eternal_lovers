@@ -67,11 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="header__icons">
           <a href="favorite.php" class="header__icon"><img src="public/icon/ph_heart-thin.svg" alt="Favorite"></a>
           <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
-          <?php if (isset($_SESSION['name'])); ?>
-            <a href="profile.php" class="header__icon">
-              <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
-              <?php echo $_SESSION['name'] ?>
-            </a>
+          <a href="profile.php" class="header__icon">
+            <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
+            <?php if (isset($_SESSION['name'])): ?>
+                <?php echo htmlspecialchars($_SESSION['name']); ?>
+            <?php endif; ?>
+          </a>
         </div>
         <div class="header__btn">
           <div class="menu-btn">
