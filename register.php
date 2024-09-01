@@ -57,6 +57,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Профиль</title>
 </head>
 <body>
+<header class="header">
+      <div class="header__container">
+        <div class="header__logo">
+          <a href="index.php"><img src="public/logo_E&L_title.svg" alt="Eternal Lovers" width="57.49px"></a>
+        </div>
+        <nav class="header__nav">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li class="nav__item"><a href="index.php#services" class="nav__link">Услуги</a></li>
+            <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
+            <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
+          </ul>
+        </nav>
+        <div class="header__icons">
+          <a href="contact.php" class="header__icon"><img src="public/icon/hugeicons_contact.svg" alt="Contact"></a>
+          <a href="basket.php" class="header__icon"><img src="public/icon/ph_basket-thin.svg" alt="Basket"></a>
+          <?php if (isset($_SESSION['name'])): ?>
+            <a href="profile.php" class="header__icon">
+              <img src="public/icon/iconamoon_profile-light.svg" alt="Profile">
+              <?php echo $_SESSION['name'] ?>
+            </a>
+          <?php endif; ?>
+        </div>
+        <div class="header__btn">
+          <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <nav class="header__menu-burger">
+            <li><a href="catalog.php" class="nav__link">Каталог</a></li>
+            <li><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li><a href="index.php#services" class="nav__link">Услуги</a></li>
+            <li><a href="blog.php" class="nav__link">Блог</a></li>
+            <li><a href="portfolio.php" class="nav__link">Портфолио</a></li>
+            <li><a href="reviews.php" class="nav__link">Отзывы</a></li>
+        </nav>
+      </div>
+    </header>
 <div class="register-form">
     <h2>Регистрация</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
