@@ -23,9 +23,9 @@ session_start();
         <nav class="header__nav">
           <ul class="nav__list">
             <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
-            <li class="nav__item"><a href="#about" class="nav__link">О нас</a></li>
-            <li class="nav__item"><a href="#consultation" class="nav__link">Консультация</a></li>
-            <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
+            <li class="nav__item"><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li class="nav__item"><a href="index.php#services" class="nav__link">Услуги</a></li>
             <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
             <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
             <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
@@ -69,7 +69,14 @@ session_start();
             <?php if (isset($_SESSION['name'], $_SESSION['email'], $_SESSION['telephone'])): ?>
             <p class="profile__name"><?php echo htmlspecialchars($_SESSION['name']); ?></p><br />
             <p class="profile__email"><?php echo htmlspecialchars($_SESSION['email']); ?></p><br />
-            <p class="profile__tel"><?php echo htmlspecialchars($_SESSION['telephone']); ?></p>   
+            <p class="profile__tel"><?php echo htmlspecialchars($_SESSION['telephone']); ?></p> 
+            <?php 
+              if(!empty($InfoUser->secret_key)){
+                echo "<a href=\"php-handler/delete_key.php\">Отключить двухфакторную аутентификацию<a/>";
+              } else{
+                echo "<a href=\"php-handler/authenticator.php\">Подключить двухфакторную аутентификацию<a/>";
+              }
+            ?>  
         </div>
         <a href="logout.php">Выйти</a>
         <div class="profile__log">

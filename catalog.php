@@ -3,7 +3,7 @@ session_start();
 require_once 'config/db.php';
 
 // Fetching products from the database
-function getProducts($min_price = 0, $max_price = 100000, $manufacturers = [], $types = []) {
+function getProducts($min_price = 0, $max_price = 900000, $manufacturers = [], $types = []) {
   global $conn;
   
   $query = "SELECT * FROM product WHERE price BETWEEN ? AND ?";
@@ -65,7 +65,7 @@ if (isset($_GET['id'])) {
 }
 
 $min_price = isset($_POST['min_price']) ? intval($_POST['min_price']) : 0;
-$max_price = isset($_POST['max_price']) ? intval($_POST['max_price']) : 100000;
+$max_price = isset($_POST['max_price']) ? intval($_POST['max_price']) : 900000;
 $selected_manufacturers = isset($_POST['manufacturers']) ? $_POST['manufacturers'] : [];
 $selected_types = isset($_POST['types']) ? $_POST['types'] : [];
 
@@ -144,7 +144,7 @@ $types = getTypes();
                         <label>30 000 - 50 000 <input type="checkbox" name="price_range" value="30000-50000" <?php echo $min_price == 30000 && $max_price == 50000 ? 'checked' : ''; ?>></label>
                     </li>
                     <li class="catalog__filter-item">
-                        <label>50 000 - 100 000 <input type="checkbox" name="price_range" value="50000-100000" <?php echo $min_price == 50000 && $max_price == 100000 ? 'checked' : ''; ?>></label>
+                        <label>50 000 - 900 000 <input type="checkbox" name="price_range" value="50000-100000" <?php echo $min_price == 50000 && $max_price == 100000 ? 'checked' : ''; ?>></label>
                     </li>
                 </ul>
             </div>

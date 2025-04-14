@@ -5,7 +5,6 @@ require_once 'config/db.php';
 $error = '';
 $success = '';
 
-// Получение данных пользователя из сессии
 $user_data = [];
 $user_id = null;
 if (isset($_SESSION['name'])) {
@@ -15,28 +14,6 @@ if (isset($_SESSION['name'])) {
     $user_id = $_SESSION['id_user'];
 }
 
-// Обработка формы входа
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['is_admin'] = $user['access'] == 1;
-        header("Location: index.php");
-        exit();
-    } else {
-        $error = "Неверные учетные данные";
-    }
-}
-
-// Получение списка мест
 function getPlaces() {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM place");
@@ -45,7 +22,6 @@ function getPlaces() {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-// Получение списка услуг
 function getServices() {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM service");
@@ -57,42 +33,40 @@ function getServices() {
 $places = getPlaces();
 $services = getServices();
 
-// Обработка формы консультации
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['consultation'])) {
-    if ($user_id !== null) {
-        $date_fit = $_POST['appointment_date'];
-        $date_wedding = $_POST['wedding_date'];
-        $size = $_POST['size'];
-        $comment = $_POST['dress_list'];
-        $place_ids = $_POST['venue'];
-        $service_ids = $_POST['services'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if ($user_id !== null) {
+    $date_fit = $_POST['appointment_date'];
+    $date_wedding = $_POST['wedding_date'];
+    $size = $_POST['size'];
+    $comment = $_POST['comment'];
+    $place_ids = $_POST['venue'];
+    $service_ids = $_POST['services'];
 
-        // Преобразование даты из формата дд.мм.гггг в гггг-мм-дд для MySQL
-        $date_fit = date('Y-m-d', strtotime(str_replace('.', '-', $date_fit)));
-        $date_wedding = date('Y-m-d', strtotime(str_replace('.', '-', $date_wedding)));
+    $date_fit = date('Y-m-d', strtotime(str_replace('.', '-', $date_fit)));
+    $date_wedding = date('Y-m-d', strtotime(str_replace('.', '-', $date_wedding)));
 
-        // Вставка данных в таблицу message
-        $stmt = $conn->prepare("INSERT INTO message (date_fitt, date_wedding, size, comment, id_user, id_place, id_service) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        if ($stmt === false) {
-            die('Prepare failed: ' . htmlspecialchars($conn->error));
-        }
+    $stmt = $conn->prepare("INSERT INTO message (date_fitt, date_wedding, size, comment, id_user, id_place, id_service) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
 
-        foreach ($place_ids as $place_id) {
-            foreach ($service_ids as $service_id) {
-                $stmt->bind_param("ssssiii", $date_fit, $date_wedding, $size, $comment, $user_id, $place_id, $service_id);
-                if ($stmt->execute()) {
-                    $success = "Заявка успешно отправлена.";
-                } else {
-                    $error = "Ошибка при отправке заявки: " . htmlspecialchars($stmt->error);
-                }
+    foreach ($place_ids as $place_id) {
+        foreach ($service_ids as $service_id) {
+            $stmt->bind_param("ssssiii", $date_fit, $date_wedding, $size, $comment, $user_id, $place_id, $service_id);
+            if ($stmt->execute() === false) {
+                die('Execute failed: ' . htmlspecialchars($stmt->error));
+            } else {
+                $success = "Заявка успешно отправлена.";
             }
         }
-        $stmt->close();
-    } else {
-        $error = "Пожалуйста, войдите в систему для отправки заявки.";
     }
+    $stmt->close();
+  } else {
+      $error = "Пожалуйста, войдите в систему для отправки заявки.";
+  }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en,ru">
@@ -258,27 +232,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['consultation'])) {
       <p class="consultation__subtitle">Если у Вас остались вопросы,</p>
       <p class="consultation__subtitle">Если Вы готовы сотрудничать с нами,</p>
       <p class="consultation__subtitle">То оставь свои данные для консультации!</p>
-      <form class="consultation__form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <form class="consultation__form" method="post" action="">
         <input type="text" class="consultation__input" name="name" placeholder="Имя" value="<?php echo isset($user_data['name']) ? htmlspecialchars($user_data['name']) : ''; ?>" required>
         <input type="email" class="consultation__input" name="email" placeholder="Mail" value="<?php echo isset($user_data['email']) ? htmlspecialchars($user_data['email']) : ''; ?>" required>
         <input type="tel" class="consultation__input" name="telephone" placeholder="8 800 000 00 00" value="<?php echo isset($user_data['telephone']) ? htmlspecialchars($user_data['telephone']) : ''; ?>" required>
         <input type="text" class="consultation__input" name="appointment_date" placeholder="Удобная дата для примерки (дд.мм.гггг)" pattern="\d{2}\.\d{2}\.\d{4}" required>
         <input type="text" class="consultation__input" name="wedding_date" placeholder="Планируемая дата свадьбы (дд.мм.гггг)" pattern="\d{2}\.\d{2}\.\d{4}" required>
         <input type="text" class="consultation__input" name="size" placeholder="Мой российский размер" required>
-        <textarea class="consultation__textarea" name="dress_list" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
+        <textarea class="consultation__textarea" name="comment" placeholder="Я хочу примерить следующие платья: (перечислить)" required></textarea>
 
         <label>Выберите услуги:</label>
         <select name="services[]" class="consultation__select" multiple required>
-          <?php foreach ($services as $service): ?>
-            <option value="<?php echo htmlspecialchars($service['id_service']); ?>"><?php echo htmlspecialchars($service['title']); ?></option>
-          <?php endforeach; ?>
+            <?php foreach ($services as $service): ?>
+                <option value="<?php echo htmlspecialchars($service['id_service']); ?>"><?php echo htmlspecialchars($service['title']); ?></option>
+            <?php endforeach; ?>
         </select>
 
         <label>Место проведения:</label>
         <select name="venue[]" class="consultation__select" multiple required>
-          <?php foreach ($places as $place): ?>
-            <option value="<?php echo htmlspecialchars($place['id_place']); ?>"><?php echo htmlspecialchars($place['title']); ?></option>
-          <?php endforeach; ?>
+            <?php foreach ($places as $place): ?>
+                <option value="<?php echo htmlspecialchars($place['id_place']); ?>"><?php echo htmlspecialchars($place['title']); ?></option>
+            <?php endforeach; ?>
         </select>
         <button type="submit" class="consultation__button">Оставить заявку</button>
       </form>

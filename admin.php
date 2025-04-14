@@ -71,13 +71,25 @@ function updateProduct($id, $title, $manufacturer, $price, $photo, $quantity, $t
     return $stmt->execute();
 }
 
-// Удаление товара
-function deleteProduct($id) {
+
+function deleteProduct($id_product) {
     global $conn;
+
+    // Удалим связанные записи из таблиц favorite и cart
+    $stmt_fav = $conn->prepare("DELETE FROM favorite WHERE id_product = ?");
+    $stmt_fav->bind_param("i", $id_product);
+    $stmt_fav->execute();
+
+    $stmt_cart = $conn->prepare("DELETE FROM cart WHERE id_product = ?");
+    $stmt_cart->bind_param("i", $id_product);
+    $stmt_cart->execute();
+
+    // Теперь удалим сам товар
     $stmt = $conn->prepare("DELETE FROM product WHERE id_product = ?");
-    $stmt->bind_param("i", $id);
+    $stmt->bind_param("i", $id_product);
     return $stmt->execute();
 }
+
 
 // Обработка форм
 
@@ -161,8 +173,8 @@ if (isset($_POST['update_product'])) {
 
 // Удаление товара
 if (isset($_POST['delete_product'])) {
-    $id = $_POST['id_product'];
-    if (deleteProduct($id)) {
+    $id_product = $_POST['id_product'];
+    if (deleteProduct($id_product)) {
         $success = "Товар удален успешно.";
     } else {
         $error = "Ошибка при удалении товара.";
@@ -527,6 +539,9 @@ $carts = getCarts();
 <section class="section-admin">
     <div class="btn__request">
         <a href="request.php" class="btn__request-link">Перейти к запросам</a>
+    </div>
+    <div class="btn__request">
+        <a href="dashboard.php" class="btn__request-link">Перейти к Dashboard</a>
     </div>
     <h1>Админ-панель</h1>
 

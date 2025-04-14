@@ -6,52 +6,106 @@ session_start();
 
 $error = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+    
+        // Создаем экземпляр класса User
+        $user = new User();
+    
+        // Вызываем метод login объекта класса User
+        $access = $user->login($email, $password);
 
-    // Создаем экземпляр класса User
-    $user = new User();
-
-    // Вызываем метод login объекта класса User
-    $access = $user->login($email, $password);
-    if ($access !== false) {
-        // Авторизация успешна, перенаправляем на соответствующую страницу
-        $_SESSION['username'] = $email;
-        $_SESSION['is_admin'] = $access == 1;
-
-        if ($_SESSION['is_admin']) {
-            header("Location: admin.php");
-        } else {
-            header("Location: profile.php");
+        if(password_verify($password, $InfoUser['password'])){
+            $_SESSION['email'] = $InfoUser['email'];
+            $_SESSION['id_user'] = $InfoUser['id_user'];
+            if(empty($InfoUser['secret_key'])){
+                header("location: index.php");
+            } else {
+                header("location: form_ga.php");
+            }
         }
-        exit;
-    } else {
-        $error = 'Неверное имя пользователя или пароль.';
+        if ($access !== false) {
+            
+            // Авторизация успешна, перенаправляем на соответствующую страницу
+            $_SESSION['username'] = $email;
+            $_SESSION['is_admin'] = $access == 1;
+
+            $check_user = "SELECT * FROM user WHERE email = '$email'";
+            $result_check_user = mysqli_query($conn, $check_user);
+            $check_user2 = mysqli_fetch_object($result_check_user);
+            $test2 = $check_user2 -> id_user;
+
+            if ($info_user['accessmail'] == 0) {
+                $_SESSION['message'] = 'Вы не подтвердили свою почту';
+                header("location: index.php");
+                exit();
+            }
+
+            $url = "http://localhost/eternal_lovers/activation.php?idu=$test2";
+            $to = $email; 
+            $subject = 'Подтвердите почту для регистрации'; 
+            $message = 'Здравствуйте, уважаемый пользователь! Просим вас подтвердить электронную почту, чтобы вы смогли авторизоваться на нашем сайте. Перейдите по ссылке: '.$url; 
+            $headers = 'From: poderbatmelissa@gmail.com'; 
+
+            
+            if(mail($to, $subject, $message, $headers)) {
+                header("location: index.php"); 
+            } else {
+                $_SESSION['message'] = 'Мы не смогли отправить вам письмо'; 
+                header("location: register.php"); 
+            }
+
+
+            if ($_SESSION['is_admin']) {
+                header("Location: admin.php");
+            } else {
+                header("Location: profile.php");
+
+            }
+            exit;
+        } else {
+            $error = 'Неверное имя пользователя или пароль.';
+        }
+    }
+    if(isset($_POST['g-recaptcha-response'])){
+        $reaptcha = $_POST['g-recaptcha-response'];
+
+        if(!$reaptcha){
+            $_SESSION['message'] = 'Пожалуйста, подтвердите что вы не робот';
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        } else {
+            $secretKey = '6Le4qT4qAAAAAHeEXwaXm7ZUoXNuv_WN2a7K7JIe';
+            $url = 'https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey. '&response='.$recapcha;
+            $response = file_get_contents($url);
+            $responseKey = json_decode($response, true);
+        }
+        if($responseKey['success']) {
+
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+        
+            $check_user = "SELECT * FROM `user` WHERE `email` = '$email'";
+            $result = mysqli_query($conn, $check_user);
+            $info_user = mysqli_fetch_array($result);
+        
+            if(empty($info_user['id_user'])) {
+                $_SESSION['message'] = 'Неправильный логин или пароль!';
+                header("location: login.php");
+            } else {
+                if(password_verify($password, $info_user['password'])) {
+                    $_SESSION['email'] = $info_user['email'];
+                    $_SESSION['id_user'] = $info_user['id_user'];
+                    header("location: login.php");
+                } else {
+                    $_SESSION['message'] = 'Неправильный пароль!';
+                    header("location: login.php");
+                }
+            }
+        }
     }
 }
-
-// Обработка reCAPTCHA (остается как есть)
-$secret = '6LcC6iAqAAAAAIGVh_HoytOXnU9imh0af-yvaMmU';
-
-if (!empty($_POST['g-recaptcha-response'])) {
-    $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-    $out = curl_exec($curl);
-    curl_close($curl);
-
-    $out = json_decode($out);
-    if ($out->success == true) {
-        $error = false;
-    }
-}
-
-if ($error) {
-    echo 'Ошибка заполнения капчи.';
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +113,9 @@ if ($error) {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="icon" type="image/svg+xml" href="public/logo_E&L_title.svg" width="auto" />
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Lavishly+Yours&display=swap" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <title>Вход</title>
 </head>
 <body>
@@ -75,9 +129,9 @@ if ($error) {
         <nav class="header__nav">
           <ul class="nav__list">
             <li class="nav__item"><a href="catalog.php" class="nav__link">Каталог</a></li>
-            <li class="nav__item"><a href="#about" class="nav__link">О нас</a></li>
-            <li class="nav__item"><a href="#consultation" class="nav__link">Консультация</a></li>
-            <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
+            <li class="nav__item"><a href="index.php#about" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="index.php#consultation" class="nav__link">Консультация</a></li>
+            <li class="nav__item"><a href="index.php#services" class="nav__link">Услуги</a></li>
             <li class="nav__item"><a href="blog.php" class="nav__link">Блог</a></li>
             <li class="nav__item"><a href="portfolio.php" class="nav__link">Портфолио</a></li>
             <li class="nav__item"><a href="reviews.php" class="nav__link">Отзывы</a></li>
@@ -120,22 +174,13 @@ if ($error) {
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <input type="email" name="email" placeholder="Почта" required><br>
             <input type="password" name="password" placeholder="Пароль" required><br>
-            <input type="submit" value="Войти">
-            <div class="g-recaptcha" data-sitekey="6LcC6iAqAAAAACrp7sBowBzOobk-O8_ajOcItXPP"></div>
+            <div class="g-recaptcha" data-sitekey="6Le4qT4qAAAAAMX5A4dtroYdl0UvNxo2FjYjSZvT" data-action="LOGIN"></div>
+            <input type="submit" name="submit" class="btn" value="Войти">
+            
         </form>
         <?php if ($error): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
     </div>
-
-    <script>
-    function onClick(e) {
-        e.preventDefault();
-        grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LcC6iAqAAAAAIGVh_HoytOXnU9imh0af-yvaMmU', {action: 'LOGIN'});
-        });
-    }
-    </script>
-
 </body>
 </html>
