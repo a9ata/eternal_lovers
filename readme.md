@@ -1,5 +1,9 @@
-Уважаемые разработчики!
-Перед началом использования проекта, необходимо выполнить несколько пунктов:
-1. Скачать zip файл проекта с гитхаб
-2. Разархивировать проект
-3. Теперь вы можете запустить проект!
+![image](https://github.com/user-attachments/assets/0c9e2f97-2547-4031-85e0-a61616d1fb5a)
+![image](https://github.com/user-attachments/assets/70ffd8f9-9ae2-41f5-9ad8-9b21434eb50c)
+![image](https://github.com/user-attachments/assets/7b452176-5fe0-48dc-95d6-9f9acf748fa9)
+![image](https://github.com/user-attachments/assets/3d274cfe-6cae-46ad-8db1-07049efb560c)
+![image](https://github.com/user-attachments/assets/88e5714c-b801-48ad-a363-3fef616e9e08)
+![image](https://github.com/user-attachments/assets/c2099a16-26b9-4334-8ba8-83b18512b1cd)
+![image](https://github.com/user-attachments/assets/b0c0ac2c-3b8f-4399-b9c0-75087a88865a)
+![image](https://github.com/user-attachments/assets/7bd6ab1b-b2d9-4c3f-99f0-068bede2a010)
+![image](https://github.com/user-attachments/assets/aa0842bb-f54b-40fa-ba77-d75c72697df3)
